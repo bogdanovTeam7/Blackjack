@@ -35,23 +35,23 @@ public final class Constans {
 		return club;
 	}
 
-	public static int getPointofblackjack() {
+	public static int getPointOfBlackjack() {
 		return pointOfBlackjack;
 	}
 
-	public static int getPointminfordiller() {
+	public static int getPointMinForDiller() {
 		return pointMinForDiller;
 	}
 
-	public static int getStartcoinsforplayer() {
+	public static int getStartCoinsForPlayer() {
 		return startCoinsForPlayer;
 	}
 
-	public static int getPlayerscoinstowintotalgame() {
+	public static int getPlayersCoinsToWinTotalGame() {
 		return playersCoinsToWinTotalGame;
 	}
 
-	public static int getStartcoinsfordiller() {
+	public static int getStartCoinsForDiller() {
 		return startCoinsForDiller;
 	}
 
