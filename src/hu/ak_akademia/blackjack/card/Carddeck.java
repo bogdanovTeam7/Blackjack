@@ -36,5 +36,8 @@ public class Carddeck {
 		}
 	}
 
-
+	public void removeUpmostCard() {
+		carddeck.remove(0);
+		carddeck.trimToSize();
+	}
 }

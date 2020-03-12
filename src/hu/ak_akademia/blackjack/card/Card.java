@@ -1,5 +1,7 @@
 package hu.ak_akademia.blackjack.card;
 
+import hu.ak_akademia.blackjack.constans.Constans;
+
 public class Card {
 
 	private Suit suit;
@@ -30,7 +32,11 @@ public class Card {
 	@Override
 	public String toString() {
 		String symbol = "";
-		symbol = rank.getSymbol() + suit.getSymbol();
+		if (isFaceUp) {
+			symbol = rank.getSymbol() + suit.getSymbol();
+		} else {
+			symbol += Constans.getCardback();
+		}
 		return symbol;
 	}
 

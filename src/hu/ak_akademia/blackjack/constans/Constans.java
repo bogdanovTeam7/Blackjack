@@ -6,6 +6,7 @@ public final class Constans {
 	static final char heart = '\u2665';
 	static final char diamond = '\u2666';
 	static final char club = '\u2663';
+	static final String cardBack = "\uD83C\uDCA0";
 
 	static final int pointOfBlackjack = 21;
 	static final int pointMinForDiller = 17;
@@ -58,5 +59,11 @@ public final class Constans {
 	public static int getBet() {
 		return bet;
 	}
+
+	public static String getCardback() {
+		return cardBack;
+	}
+	
+	
 
 }

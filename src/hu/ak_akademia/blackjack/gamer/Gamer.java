@@ -44,9 +44,12 @@ public class Gamer {
 	public int getPoints() {
 		int points = 0;
 		for (int i = 0; i < cardsInHand.size(); i++) {
-			points += cardsInHand.get(i)
-					.getRank()
-					.getValue();
+			if (cardsInHand.get(i)
+					.isFaceUp()) {
+				points += cardsInHand.get(i)
+						.getRank()
+						.getValue();
+			}
 		}
 		if (points > Constans.getPointOfBlackjack()) {
 			int numberOfAceInHand = getNumberOfAce();
@@ -142,7 +145,5 @@ public class Gamer {
 		builder.append("]");
 		return builder.toString();
 	}
-	
-	
 
 }

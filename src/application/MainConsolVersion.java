@@ -6,6 +6,7 @@ import hu.ak_akademia.blackjack.card.Card;
 import hu.ak_akademia.blackjack.card.Carddeck;
 import hu.ak_akademia.blackjack.card.Rank;
 import hu.ak_akademia.blackjack.card.Suit;
+import hu.ak_akademia.blackjack.constans.Constans;
 import hu.ak_akademia.blackjack.gamer.Diller;
 import hu.ak_akademia.blackjack.gamer.Gamer;
 import hu.ak_akademia.blackjack.gamer.Player;
@@ -13,6 +14,7 @@ import hu.ak_akademia.blackjack.gamer.Player;
 public class MainConsolVersion {
 
 	public static void main(String[] args) {
+		
 
 		Carddeck carddeck = new Carddeck();
 		ArrayList<Card> cards = carddeck.getCarddeck();
