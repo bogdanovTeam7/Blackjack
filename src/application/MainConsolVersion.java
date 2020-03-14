@@ -1,6 +1,9 @@
 package application;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import hu.ak_akademia.blackjack.card.Card;
 import hu.ak_akademia.blackjack.card.Carddeck;
@@ -13,7 +16,7 @@ import hu.ak_akademia.blackjack.gamer.Player;
 
 public class MainConsolVersion {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws FileNotFoundException {
 		
 
 		Carddeck carddeck = new Carddeck();
@@ -62,6 +65,8 @@ public class MainConsolVersion {
 		}
 		
 		System.out.println(gamers.get(0) instanceof Diller);
+		
+
 
 	}
 
