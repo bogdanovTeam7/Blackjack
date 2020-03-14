@@ -2,20 +2,20 @@ package hu.ak_akademia.blackjack.constans;
 
 public final class Constans {
 
-	static final char spade = '\u2660';
-	static final char heart = '\u2665';
-	static final char diamond = '\u2666';
-	static final char club = '\u2663';
-	static final String cardBack = "\uD83C\uDCA0";
+	private static final char spade = '\u2660';
+	private static final char heart = '\u2665';
+	private static final char diamond = '\u2666';
+	private static final char club = '\u2663';
+	private static final String cardBack = "\uD83C\uDCA0";
 
-	static final int pointOfBlackjack = 21;
-	static final int pointMinForDiller = 17;
+	private static final int pointOfBlackjack = 21;
+	private static final int pointMinForDiller = 17;
 
-	static final int startCoinsForPlayer = 4;
-	static final int playersCoinsToWinTotalGame = 8;
-	static final int startCoinsForDiller = 1000;
+	private static final int startCoinsForPlayer = 4;
+	private static final int playersCoinsToWinTotalGame = 8;
+	private static final int startCoinsForDiller = 1000;
 
-	static final int bet = 1;
+	private static final int bet = 1;
 
 	Constans() {
 	}
@@ -63,7 +63,6 @@ public final class Constans {
 	public static String getCardback() {
 		return cardBack;
 	}
-	
 	
 
 }
