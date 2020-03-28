@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane fx:id="salutationPane" prefHeight="700.0" prefWidth="1400.0" style="-fx-background-color: darkgreen;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.ak_akademia.blackjack.controllers.SalutationController">
+	<bottom>
+		<Label alignment="CENTER" prefHeight="20.0" prefWidth="183.0" text="Sok szerencsét!" textAlignment="CENTER" textFill="WHITE" BorderPane.alignment="CENTER">
+			<font>
+				<Font name="Comic Sans MS Bold" size="24.0" />
+			</font>
+			<BorderPane.margin>
+				<Insets bottom="50.0" />
+			</BorderPane.margin>
+		</Label>
+	</bottom>
+	<top>
+		<AnchorPane prefHeight="150.0" prefWidth="1400.0" BorderPane.alignment="CENTER">
+			<children>
+				<Label contentDisplay="CENTER" layoutX="1358.0" layoutY="91.0" text="BLACKJACK / AK_TEAM7 version" textAlignment="RIGHT" textFill="WHITE" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+					<font>
+						<Font name="Victorian LET Plain:1.0" size="24.0" />
+					</font>
+				</Label>
+			</children>
+		</AnchorPane>
+	</top>
+	<center>
+		<AnchorPane prefHeight="452.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
+			<children>
+				<ImageView fx:id="imageView" fitHeight="300.0" fitWidth="500.0" layoutX="450.0" layoutY="37.0" onMouseClicked="#goToNextScreen" pickOnBounds="true" preserveRatio="true">
+					<image>
+						<Image url="@../../../../../res/blackjackmoney.jpg" />
+					</image>
+				</ImageView>
+				<Label fx:id="informationLabel" layoutX="558.0" layoutY="372.0" text="Folytatáshoz kattints a képre..." textFill="WHITE">
+					<font>
+						<Font name="Comic Sans MS Bold" size="18.0" />
+					</font>
+				</Label>
+			</children>
+		</AnchorPane>
+	</center>
+</BorderPane>
