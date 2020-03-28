@@ -13,7 +13,7 @@ public class GamersDataBase {
 		gamers=new ArrayList<>();
 		gamers.add(new Gamer("András","file:res/András.png"));
 		gamers.add(new Gamer("Katalin","file:res/Katalin.png"));
-		gamers.add(new Gamer("DÓra","file:res/Dora.png"));
+		gamers.add(new Gamer("Dóra","file:res/Dora.png"));
 		gamers.add(new Gamer("István","file:res/István.png"));
 		gamers.add(new Gamer("Gergő","file:res/Gergő.png"));
 		gamers.add(new Gamer("Botond","file:res/Botond.png"));

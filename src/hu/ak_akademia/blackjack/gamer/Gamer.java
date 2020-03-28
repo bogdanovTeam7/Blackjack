@@ -1,6 +1,7 @@
 package hu.ak_akademia.blackjack.gamer;
 
 import java.util.ArrayList;
+import java.util.ListIterator;
 
 import hu.ak_akademia.blackjack.card.Card;
 import hu.ak_akademia.blackjack.card.Rank;
@@ -19,8 +20,6 @@ public class Gamer {
 
 	public Gamer() {
 	}
-
-
 
 	public Gamer(String name, String picURL) {
 		this.name = name;
@@ -127,6 +126,17 @@ public class Gamer {
 
 	public ArrayList<Card> getCardsInHand() {
 		return cardsInHand;
+	}
+
+	public String cardsInHandtoString() {
+		String cards = "";
+		if (cardsInHand.size() > 0) {
+			for (ListIterator<Card> iterator = cardsInHand.listIterator(); iterator.hasNext();) {
+				cards += iterator.next()
+						.toString();
+			}
+		}
+		return cards;
 	}
 
 	@Override
