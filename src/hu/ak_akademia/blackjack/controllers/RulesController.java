@@ -8,6 +8,8 @@ import java.util.ResourceBundle;
 import java.util.Scanner;
 
 import hu.ak_akademia.blackjack.animations.Fade;
+import hu.ak_akademia.blackjack.distribution.Distributor;
+import hu.ak_akademia.blackjack.distribution.GamersDataBase;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -69,6 +71,9 @@ public class RulesController implements Initializable, ControlledScreen {
 	private void setNextScene() throws IOException {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("../views/DistributionView.fxml"));
 		Parent root = loader.load();
+		DistributionController controller = loader.getController();
+		Distributor distributor = new Distributor(new GamersDataBase());
+		controller.setDistributor(distributor);
 		Scene scene = new Scene(root);
 		Stage stage = (Stage) rulePane.getScene()
 				.getWindow();
