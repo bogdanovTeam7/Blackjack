@@ -4,6 +4,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import hu.ak_akademia.blackjack.gamer.Gamer;
+import hu.ak_akademia.blackjack.gamer.State;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -65,6 +66,7 @@ public class GamerController implements Initializable {
 	}
 
 	private void setGamerPane() {
+		gamerPane.setOpacity((gamer.getState() != State.APPLICANT) ? 0.5 : 1);
 		gamerImageView.setImage(new Image(gamer.getPicFileName()));
 		gamerNameLabel.setText(gamer.getName());
 		gamerStateLabel.setText(gamer.getState()

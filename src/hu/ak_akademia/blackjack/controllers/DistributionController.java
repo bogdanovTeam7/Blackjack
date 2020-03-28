@@ -7,10 +7,13 @@ import java.util.ListIterator;
 import java.util.ResourceBundle;
 
 import hu.ak_akademia.blackjack.animations.Fade;
+import hu.ak_akademia.blackjack.animations.Shake;
 import hu.ak_akademia.blackjack.constants.Constants;
 import hu.ak_akademia.blackjack.distribution.Distributor;
 import hu.ak_akademia.blackjack.distribution.GamersDataBase;
+import hu.ak_akademia.blackjack.gamer.Diller;
 import hu.ak_akademia.blackjack.gamer.Gamer;
+import hu.ak_akademia.blackjack.gamer.Player;
 import hu.ak_akademia.blackjack.gamer.State;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -64,14 +67,63 @@ public class DistributionController implements Initializable, ControlledScreen {
 	private Button startGameButton;
 
 	@FXML
-	private ComboBox<String> namesComboBox;
+	private ComboBox<Gamer> namesComboBox;
 
 	@FXML
 	private HBox allGamersHBox;
 
 	@FXML
-	void changeToNextView(ActionEvent event) {
+	void setParticipant(ActionEvent event) {
 
+		Gamer selectedGamer = namesComboBox.getSelectionModel()
+				.getSelectedItem();
+		if (selectedGamer != null) {
+			if (distributor.getPartipants()
+					.getDiller() == null) {
+				distributor.getPartipants()
+						.setDiller(new Diller(selectedGamer));
+				selectedGamer.setState(State.PARTICIPATOR);
+				addGamersToHBox(distributor.getGamersList().getGamers());
+				addGamersToComboBox(distributor.getGamersList()
+						.getGamers());
+				refreshCurrentScene();
+			} else if (getNumberOfApplicants() < 1) {
+				currentActionPane.setVisible(false);
+				refreshCurrentScene();
+			} else {
+				distributor.getPartipants()
+						.getPlayers()
+						.add(new Player(selectedGamer));
+				selectedGamer.setState(State.PARTICIPATOR);
+
+				addGamersToComboBox(distributor.getGamersList()
+						.getGamers());
+				refreshCurrentScene();
+			}
+		} else {
+			Shake shake = new Shake(questionLabel);
+			shake.playAnim();
+		}
+
+	}
+
+	private void refreshCurrentScene() {
+		Scene scene = distributionPane.getScene();
+		Stage stage = (Stage) distributionPane.getScene()
+				.getWindow();
+		stage.setScene(scene);
+		stage.show();
+	}
+
+	private int getNumberOfApplicants() {
+		int number = 0;
+		for (Gamer gamer : distributor.getGamersList()
+				.getGamers()) {
+			if (gamer.getState() == State.APPLICANT) {
+				number++;
+			}
+		}
+		return number;
 	}
 
 	@Override
@@ -80,7 +132,7 @@ public class DistributionController implements Initializable, ControlledScreen {
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		startGameButton.setVisible(true);
+		startGameButton.setVisible(false);
 
 		ArrayList<Gamer> gamers = new GamersDataBase().getGamers();
 		addGamersToHBox(gamers);
@@ -94,13 +146,13 @@ public class DistributionController implements Initializable, ControlledScreen {
 	}
 
 	private void addGamersToComboBox(ArrayList<Gamer> gamers) {
-		ObservableList<String> gamersNames = FXCollections.observableArrayList();
+		ObservableList<Gamer> gamersNames = FXCollections.observableArrayList();
 		namesComboBox.getItems()
 				.clear();
 		for (ListIterator<Gamer> iterator = gamers.listIterator(); iterator.hasNext();) {
 			Gamer currentGamer = iterator.next();
 			if (currentGamer.getState() == State.APPLICANT) {
-				gamersNames.add(currentGamer.getName());
+				gamersNames.add(currentGamer);
 			}
 		}
 		namesComboBox.setItems(gamersNames);
@@ -148,7 +200,7 @@ public class DistributionController implements Initializable, ControlledScreen {
 	}
 
 	private void setNextScene() throws IOException {
-		InitialDealController controller = new InitialDealController();
+		InitialDealController controller = new InitialDealController(distributor.getPartipants());
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("../views/InitialDealView.fxml"));
 		loader.setController(controller);
 		Parent root = loader.load();

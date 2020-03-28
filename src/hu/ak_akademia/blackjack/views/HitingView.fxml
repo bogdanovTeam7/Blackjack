@@ -43,6 +43,21 @@
                   </Label>
                   <VBox alignment="BOTTOM_CENTER" layoutX="-3.0" layoutY="50.0" prefHeight="233.0" prefWidth="268.0" spacing="10.0" AnchorPane.bottomAnchor="20.0">
                      <children>
+                        <Button fx:id="hitingButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#changeToNextView" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: gold;" text="Játékos lapot kér" wrapText="true">
+                           <font>
+                              <Font name="Comic Sans MS Bold" size="18.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="stayingButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#changeToNextView" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: gold;" text="Játékos magáll" wrapText="true">
+                           <font>
+                              <Font name="Comic Sans MS Bold" size="18.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="bustedNextButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#changeToNextView" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: gold;" text="Besokall! Következő" wrapText="true">
+                           <font>
+                              <Font name="Comic Sans MS Bold" size="18.0" />
+                           </font>
+                        </Button>
                         <Button fx:id="startGameButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#changeToNextView" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: gold;" text="Lapkérés inditása" wrapText="true">
                            <font>
                               <Font name="Comic Sans MS Bold" size="18.0" />
@@ -62,6 +77,27 @@
                      </BorderPane.margin>
                   </BorderPane>
                </right>
+               <center>
+                  <AnchorPane prefHeight="285.0" prefWidth="810.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <Label fx:id="gamerNumberNameLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="284.0" layoutY="26.0" text="1. Játékos, Név" textAlignment="CENTER" textFill="WHITE" AnchorPane.topAnchor="20.0">
+                           <font>
+                              <Font name="Comic Sans MS Bold" size="24.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="cardsInHandLabel" alignment="CENTER" layoutX="313.0" layoutY="89.0" text="Kátryak" textAlignment="CENTER" textFill="WHITE" AnchorPane.topAnchor="100.0">
+                           <font>
+                              <Font name="Comic Sans MS Bold" size="36.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="pointslabel" alignment="BOTTOM_LEFT" contentDisplay="CENTER" layoutX="316.0" layoutY="273.0" text="Pontszám: " textFill="WHITE" AnchorPane.bottomAnchor="40.0">
+                           <font>
+                              <Font name="Comic Sans MS Bold" size="24.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </center>
             </BorderPane>
          </right>
       </BorderPane>

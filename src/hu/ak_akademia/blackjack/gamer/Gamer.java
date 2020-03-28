@@ -141,25 +141,7 @@ public class Gamer {
 
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("Gamer [name=");
-		builder.append(name);
-		builder.append(", coinsInHand=");
-		builder.append(coinsInHand);
-		builder.append(", coinsInBet=");
-		builder.append(coinsInBet);
-		builder.append(", state=");
-		builder.append(state);
-		builder.append(", cardsInHand=");
-		builder.append(cardsInHand);
-		builder.append(", isLostGrandGame=");
-		builder.append(isLostGrandGame);
-		builder.append(", isWinGrandGame=");
-		builder.append(isWinGrandGame);
-		builder.append(", picFileName=");
-		builder.append(picFileName);
-		builder.append("]");
-		return builder.toString();
+		return name;
 	}
 
 }

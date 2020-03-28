@@ -8,10 +8,11 @@ import hu.ak_akademia.blackjack.gamer.State;
 public class Distributor {
 
 	private GamersDataBase gamers;
-	private Participants partipants;
+	private Participants partipants=new Participants();
 
 	public Distributor() {
 		gamers=new GamersDataBase();
+		
 	}
 
 	public Distributor(GamersDataBase gamers) {

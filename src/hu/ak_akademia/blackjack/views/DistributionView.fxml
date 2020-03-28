@@ -62,7 +62,7 @@
                   </Label>
                </top>
                <bottom>
-                  <Button fx:id="selectedNameOkButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#changeToNextView" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: gold;" text="OK" BorderPane.alignment="CENTER">
+                  <Button fx:id="selectedNameOkButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#setParticipant" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: gold;" text="OK" BorderPane.alignment="CENTER">
                      <font>
                         <Font name="Comic Sans MS Bold" size="18.0" />
                      </font>

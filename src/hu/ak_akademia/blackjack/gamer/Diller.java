@@ -7,7 +7,11 @@ public class Diller extends Gamer {
 	public Diller(String name, String picURL) {
 		super(name, picURL);
 		coinsInHand = Constants.getStartCoinsForDiller();
-		state = State.DILLER;
+		state = State.PARTICIPATOR;
+	}
+
+	public Diller(Gamer gamer) {
+		this(gamer.getName(), gamer.getPicFileName());
 	}
 
 	@Override
