@@ -6,7 +6,7 @@ public class Card {
 
 	private Suit suit;
 	private Rank rank;
-	private boolean isFaceUp;
+	private boolean isFaceUp = true;
 
 	public Card(Suit suit, Rank rank) {
 		this.suit = suit;

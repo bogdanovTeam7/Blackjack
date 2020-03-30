@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="gamerPane" style="-fx-background-color: darkgreen; -fx-border-color: gold;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane fx:id="gamerPane" prefWidth="175.0" style="-fx-background-color: darkgreen; -fx-border-color: gold;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <right>
       <ImageView fx:id="gamerImageView" fitHeight="150.0" fitWidth="107.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER" />
    </right>
@@ -29,17 +29,17 @@
    <left>
       <AnchorPane BorderPane.alignment="CENTER">
          <children>
-            <Label fx:id="cardsInHandLable" alignment="BOTTOM_LEFT" layoutX="6.0" layoutY="16.0" text="Kártyak" textFill="WHITE" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
+            <Label fx:id="cardsInHandLable" layoutX="6.0" layoutY="16.0" text="Kártyak" textFill="GOLD" wrapText="true" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
                <font>
                   <Font name="Comic Sans MS Bold" size="18.0" />
                </font>
             </Label>
-            <Label alignment="TOP_LEFT" layoutX="14.0" layoutY="140.0" text="Pontszám:" textFill="WHITE" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="10.0">
+            <Label layoutX="14.0" layoutY="140.0" text="Pontszám:" textFill="WHITE" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="10.0">
                <font>
                   <Font name="Comic Sans MS Bold" size="14.0" />
                </font>
             </Label>
-            <Label fx:id="pointsLabel" alignment="TOP_RIGHT" layoutX="86.0" layoutY="138.0" text="21" textAlignment="RIGHT" textFill="WHITE" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="10.0">
+            <Label fx:id="pointsLabel" alignment="CENTER_RIGHT" layoutX="86.0" layoutY="138.0" text="21" textAlignment="RIGHT" textFill="GOLD" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="10.0">
                <font>
                   <Font name="Comic Sans MS Bold" size="18.0" />
                </font>
@@ -60,7 +60,7 @@
                   <Font name="Comic Sans MS Bold" size="14.0" />
                </font>
             </Label>
-            <Label fx:id="coinsNumberLabel" layoutX="14.0" layoutY="39.0" text="4" textFill="WHITE" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="30.0">
+            <Label fx:id="coinsNumberLabel" layoutX="14.0" layoutY="39.0" text="4" textFill="GOLD" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="30.0">
                <font>
                   <Font name="Comic Sans MS Bold" size="14.0" />
                </font>

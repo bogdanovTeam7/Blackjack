@@ -8,9 +8,9 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="salutationPane" prefHeight="700.0" prefWidth="1400.0" style="-fx-background-color: darkgreen;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.ak_akademia.blackjack.controllers.SalutationController">
+<BorderPane fx:id="salutationPane" prefHeight="700.0" prefWidth="1500.0" style="-fx-background-color: darkgreen;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.ak_akademia.blackjack.controllers.SalutationController">
 	<bottom>
-		<Label alignment="CENTER" prefHeight="20.0" prefWidth="183.0" text="Sok szerencsét!" textAlignment="CENTER" textFill="WHITE" BorderPane.alignment="CENTER">
+		<Label alignment="CENTER" text="Sok szerencsét!" textAlignment="CENTER" textFill="WHITE" BorderPane.alignment="CENTER">
 			<font>
 				<Font name="Comic Sans MS Bold" size="24.0" />
 			</font>
@@ -33,12 +33,12 @@
 	<center>
 		<AnchorPane prefHeight="452.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
 			<children>
-				<ImageView fx:id="imageView" fitHeight="300.0" fitWidth="500.0" layoutX="450.0" layoutY="37.0" onMouseClicked="#goToNextScreen" pickOnBounds="true" preserveRatio="true">
+				<ImageView fx:id="imageView" fitHeight="300.0" fitWidth="500.0" layoutX="500.0" layoutY="39.0" onMouseClicked="#goToNextScreen" pickOnBounds="true" preserveRatio="true">
 					<image>
 						<Image url="@../../../../../res/blackjackmoney.jpg" />
 					</image>
 				</ImageView>
-				<Label fx:id="informationLabel" layoutX="558.0" layoutY="372.0" text="Folytatáshoz kattints a képre..." textFill="WHITE">
+				<Label fx:id="informationLabel" layoutX="608.0" layoutY="378.0" text="Folytatáshoz kattints a képre..." textFill="WHITE">
 					<font>
 						<Font name="Comic Sans MS Bold" size="18.0" />
 					</font>

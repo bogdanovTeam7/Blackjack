@@ -66,7 +66,7 @@ public class GamerController implements Initializable {
 	}
 
 	private void setGamerPane() {
-		gamerPane.setOpacity((gamer.getState() != State.APPLICANT) ? 0.5 : 1);
+		setgamerPaneOpacity();
 		gamerImageView.setImage(new Image(gamer.getPicFileName()));
 		gamerNameLabel.setText(gamer.getName());
 		gamerStateLabel.setText(gamer.getState()
@@ -76,14 +76,28 @@ public class GamerController implements Initializable {
 		pointsLabel.setVisible((cardsInHandLable.getText()
 				.equals("")) ? false : true);
 		coinsNumberLabel.setText(Integer.toString(gamer.getCoinsInHand()));
-		if (false) {
+		setBetOrResultInformation();
+	}
+
+	private void setBetOrResultInformation() {
+		if (gamer.getState() == State.PLAYER) {
 			betOrResultInfoLabel.setText("Tét:");
 			betOrResultNumberLabel.setText(Integer.toString(gamer.getCoinsInBet()));
 			resultLabel.setVisible(false);
+		} else if (gamer.getState() == State.APPLICANT) {
+			betOrResultInfoLabel.setVisible(false);
+			betOrResultNumberLabel.setVisible(false);
+			resultLabel.setVisible(false);
+
 		} else {
 			betOrResultInfoLabel.setText("Eredmény:");
-			resultLabel.setText("Valami");
-			resultLabel.setVisible(true);
+			betOrResultNumberLabel.setText("+");
+			resultLabel.setText("Majd meglátjuk");
+
 		}
+	}
+
+	private void setgamerPaneOpacity() {
+		gamerPane.setOpacity((gamer.getState() == State.PARTICIPATOR) ? 0.3 : 1);
 	}
 }

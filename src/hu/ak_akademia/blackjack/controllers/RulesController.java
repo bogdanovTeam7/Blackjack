@@ -20,9 +20,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-public class RulesController implements Initializable, ControlledScreen {
+public class RulesController implements Initializable {
 
 	@FXML
 	private ResourceBundle resources;
@@ -38,10 +39,6 @@ public class RulesController implements Initializable, ControlledScreen {
 
 	@FXML
 	private TextArea rulesListView;
-
-	@Override
-	public void setScreenParent() {
-	}
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -70,10 +67,10 @@ public class RulesController implements Initializable, ControlledScreen {
 
 	private void setNextScene() throws IOException {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("../views/DistributionView.fxml"));
-		Parent root = loader.load();
-		DistributionController controller = loader.getController();
 		Distributor distributor = new Distributor(new GamersDataBase());
-		controller.setDistributor(distributor);
+		DistributionController controller = new DistributionController(distributor);
+		loader.setController(controller);
+		Parent root = loader.load();
 		Scene scene = new Scene(root);
 		Stage stage = (Stage) rulePane.getScene()
 				.getWindow();

@@ -18,7 +18,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import javafx.fxml.Initializable;
 
-public class SalutationController implements Initializable, ControlledScreen {
+public class SalutationController implements Initializable {
 
 	@FXML
 	private ResourceBundle resources;
@@ -37,11 +37,6 @@ public class SalutationController implements Initializable, ControlledScreen {
 
 	@FXML
 	private ImageView imageView;
-
-	@Override
-	public void setScreenParent() {
-
-	}
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {

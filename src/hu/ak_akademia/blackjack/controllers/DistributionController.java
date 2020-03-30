@@ -10,7 +10,6 @@ import hu.ak_akademia.blackjack.animations.Fade;
 import hu.ak_akademia.blackjack.animations.Shake;
 import hu.ak_akademia.blackjack.constants.Constants;
 import hu.ak_akademia.blackjack.distribution.Distributor;
-import hu.ak_akademia.blackjack.distribution.GamersDataBase;
 import hu.ak_akademia.blackjack.gamer.Diller;
 import hu.ak_akademia.blackjack.gamer.Gamer;
 import hu.ak_akademia.blackjack.gamer.Player;
@@ -28,12 +27,18 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
-public class DistributionController implements Initializable, ControlledScreen {
+public class DistributionController implements Initializable {
 	private Distributor distributor;
+
+	public DistributionController(Distributor distributor) {
+		this.distributor = distributor;
+	}
 
 	public void setDistributor(Distributor distributor) {
 		this.distributor = distributor;
@@ -73,7 +78,13 @@ public class DistributionController implements Initializable, ControlledScreen {
 	private HBox allGamersHBox;
 
 	@FXML
-	void setParticipant(ActionEvent event) {
+	private TextArea selectedGamersTextArea;
+
+	@FXML
+	private AnchorPane gamerChoosingPane;
+
+	@FXML
+	void setParticipant(ActionEvent event) throws IOException {
 
 		Gamer selectedGamer = namesComboBox.getSelectionModel()
 				.getSelectedItem();
@@ -83,9 +94,6 @@ public class DistributionController implements Initializable, ControlledScreen {
 				distributor.getPartipants()
 						.setDiller(new Diller(selectedGamer));
 				selectedGamer.setState(State.PARTICIPATOR);
-				addGamersToHBox(distributor.getGamersList().getGamers());
-				addGamersToComboBox(distributor.getGamersList()
-						.getGamers());
 				refreshCurrentScene();
 			} else if (getNumberOfApplicants() < 1) {
 				currentActionPane.setVisible(false);
@@ -95,9 +103,11 @@ public class DistributionController implements Initializable, ControlledScreen {
 						.getPlayers()
 						.add(new Player(selectedGamer));
 				selectedGamer.setState(State.PARTICIPATOR);
+				int currentPlayer = distributor.getPartipants()
+						.getPlayers()
+						.size() + 1;
+				selectedGamersTextArea.appendText(currentPlayer + ". játékos - " + selectedGamer.getName());
 
-				addGamersToComboBox(distributor.getGamersList()
-						.getGamers());
 				refreshCurrentScene();
 			}
 		} else {
@@ -107,8 +117,13 @@ public class DistributionController implements Initializable, ControlledScreen {
 
 	}
 
-	private void refreshCurrentScene() {
-		Scene scene = distributionPane.getScene();
+	@FXML
+	private void refreshCurrentScene() throws IOException {
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("../views/DistributionView.fxml"));
+		DistributionController controller = new DistributionController(distributor);
+		loader.setController(controller);
+		Parent root = loader.load();
+		Scene scene = new Scene(root);
 		Stage stage = (Stage) distributionPane.getScene()
 				.getWindow();
 		stage.setScene(scene);
@@ -127,25 +142,72 @@ public class DistributionController implements Initializable, ControlledScreen {
 	}
 
 	@Override
-	public void setScreenParent() {
-	}
-
-	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		startGameButton.setVisible(false);
 
-		ArrayList<Gamer> gamers = new GamersDataBase().getGamers();
-		addGamersToHBox(gamers);
+		if (distributor.getPartipants()
+				.getDiller() != null
+				&& distributor.getPartipants()
+						.getPlayers()
+						.size() > 0) {
+			startGameButton.setVisible(true);
 
-		questionLabel.setText("Ki lesz az osztó?");
-		addGamersToComboBox(gamers);
+		}
+
+		addGamersToHBox();
+
+		int currentPlayer = distributor.getPartipants()
+				.getPlayers()
+				.size() + 1;
+		questionLabel.setText((distributor.getPartipants()
+				.getDiller() == null) ? "Ki lesz az osztó?" : "Ki lesz a " + currentPlayer + " játékos?");
+
+		addGamersToComboBox();
 		namesComboBox.setStyle("-fx-font-family:\"" + Constants.getFont() + "\"; -fx-font-size:24");
+
+		selectedGamersTextArea.appendText(getAlreadyChosenGamers());
+
+		if (!isAtleastOneApplicantExist()) {
+			gamerChoosingPane.setVisible(false);
+		}
 
 		Fade fade = new Fade(distributionPane);
 		fade.in();
 	}
 
-	private void addGamersToComboBox(ArrayList<Gamer> gamers) {
+	private boolean isAtleastOneApplicantExist() {
+		for (ListIterator<Gamer> iterator = distributor.getGamersList()
+				.getGamers()
+				.listIterator(); iterator.hasNext();) {
+			if (iterator.next()
+					.getState() == State.APPLICANT) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	private String getAlreadyChosenGamers() {
+		String text = "";
+		if (distributor.getPartipants()
+				.getDiller() != null) {
+			text += "Ostó - " + distributor.getPartipants()
+					.getDiller()
+					.getName();
+			text += "\n";
+		}
+		int counter = 1;
+		for (ListIterator<Player> iterator = distributor.getPartipants()
+				.getPlayers()
+				.listIterator(); iterator.hasNext();) {
+			text += counter++ + ". Játékos - " + iterator.next()
+					.getName() + "\n";
+		}
+		return text;
+	}
+
+	private void addGamersToComboBox() {
+		ArrayList<Gamer> gamers = distributor.getGamersList()
+				.getGamers();
 		ObservableList<Gamer> gamersNames = FXCollections.observableArrayList();
 		namesComboBox.getItems()
 				.clear();
@@ -158,10 +220,13 @@ public class DistributionController implements Initializable, ControlledScreen {
 		namesComboBox.setItems(gamersNames);
 	}
 
-	private void addGamersToHBox(ArrayList<Gamer> gamers) {
+	private void addGamersToHBox() {
+		ArrayList<Gamer> gamers = distributor.getGamersList()
+				.getGamers();
 		allGamersHBox.getChildren()
 				.clear();
 		for (Gamer gamer : gamers) {
+
 			Node node = getNode(gamer);
 			allGamersHBox.getChildren()
 					.add(node);
@@ -200,7 +265,7 @@ public class DistributionController implements Initializable, ControlledScreen {
 	}
 
 	private void setNextScene() throws IOException {
-		InitialDealController controller = new InitialDealController(distributor.getPartipants());
+		InitialDealController controller = new InitialDealController(distributor.getPartipants(), 1);
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("../views/InitialDealView.fxml"));
 		loader.setController(controller);
 		Parent root = loader.load();

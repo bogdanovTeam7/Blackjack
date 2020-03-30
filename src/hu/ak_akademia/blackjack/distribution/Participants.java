@@ -5,17 +5,13 @@ import java.util.ArrayList;
 import hu.ak_akademia.blackjack.gamer.Diller;
 import hu.ak_akademia.blackjack.gamer.Player;
 
-
 public class Participants {
 
 	private ArrayList<Player> players;
 	private Diller diller;
 
-	
-	
 	public Participants() {
 		players = new ArrayList<>();
-		diller=new Diller(null, null);
 	}
 
 	public ArrayList<Player> getPlayers() {

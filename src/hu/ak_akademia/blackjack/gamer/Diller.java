@@ -10,6 +10,9 @@ public class Diller extends Gamer {
 		state = State.PARTICIPATOR;
 	}
 
+	public Diller() {
+	}
+
 	public Diller(Gamer gamer) {
 		this(gamer.getName(), gamer.getPicFileName());
 	}
