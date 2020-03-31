@@ -195,6 +195,7 @@ public class HittingController {
 			checkForBlackjack();
 			isBetDone = true;
 		}
+		roundCounterLable.setText(countOfGameRound + ". Játszma");
 		setHitter();
 		setPlayersViews();
 		setDillerView();
@@ -230,7 +231,7 @@ public class HittingController {
 			stayingButton.setVisible(false);
 			bustedNextButton.setVisible(false);
 			changeToResultViewButton.setVisible(true);
-		} else if (currentGamer.getState() == State.BLACKJACK) {
+		} else if (currentGamer.getPoints() == Constants.getPointOfBlackjack()) {
 			hittingButton.setVisible(false);
 			stayingButton.setVisible(true);
 			bustedNextButton.setVisible(false);
@@ -292,15 +293,20 @@ public class HittingController {
 	}
 
 	private void setHitter() {
-		if (currentHitter == players.size() && diller.getPoints() > Constants.getPointOfBlackjack()) {
-			diller.setState(State.BUSTED);
-		} else if (currentHitter == players.size() && diller.getState() == State.HITTER || currentHitter == players.size() && diller.getPoints() >= Constants.getPointMinForDiller()) {
-			diller.setState(State.STAYED);
-		} else if (currentHitter == players.size()) {
-			diller.setState(State.HITTER);
+		if (currentHitter >= players.size()) {
 			for (Card card : diller.getCardsInHand()) {
 				card.setFaceUp(true);
 			}
+			if (diller.getPoints() > Constants.getPointOfBlackjack()) {
+				diller.setState(State.BUSTED);
+			} else if (diller.getPoints() >= Constants.getPointMinForDiller()) {
+				diller.setState(State.STAYED);
+			} else if (diller.getState() == State.HITTER) {
+				diller.setState(State.STAYED);
+			} else {
+				diller.setState(State.HITTER);
+			}
+
 		} else if (players.get(currentHitter)
 				.getState() != State.BUSTED
 				&& players.get(currentHitter)

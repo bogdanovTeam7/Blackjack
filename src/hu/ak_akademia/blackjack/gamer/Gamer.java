@@ -34,12 +34,15 @@ public class Gamer {
 		coinsInBet += Constants.getBet();
 	}
 
-	public void winBet(int multiplier) {
-		coinsInHand += coinsInBet * (1 + multiplier);
+	public void winBet() {
+		coinsInHand += coinsInBet + Constants.getBet();
+		coinsInBet = 0;
+		isWinGrandGame = coinsInHand >= Constants.getPlayersCoinsToWinTotalGame();
+		isLostGrandGame = coinsInHand < 1;
 	}
 
-	public void lostBet() {
-		coinsInBet = 0;
+	public void removeAllCardsInHand() {
+		cardsInHand.removeAll(cardsInHand);
 	}
 
 	public void addCard(Card card) {
@@ -122,6 +125,10 @@ public class Gamer {
 
 	public int getCoinsInBet() {
 		return coinsInBet;
+	}
+
+	public void setCoinsInBet(int coinsInBet) {
+		this.coinsInBet = coinsInBet;
 	}
 
 	public ArrayList<Card> getCardsInHand() {

@@ -4,6 +4,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import hu.ak_akademia.blackjack.constants.Constants;
+import hu.ak_akademia.blackjack.gamer.Diller;
 import hu.ak_akademia.blackjack.gamer.Gamer;
 import hu.ak_akademia.blackjack.gamer.State;
 import javafx.fxml.FXML;
@@ -18,6 +19,7 @@ public class GamerController implements Initializable {
 
 	private Gamer gamer;
 	private boolean isRatingPhase;
+	private int dillersPoints;
 
 	public GamerController(Gamer gamer) {
 		this.gamer = gamer;
@@ -25,6 +27,10 @@ public class GamerController implements Initializable {
 
 	public void setRatingPhase(boolean isRatingPhase) {
 		this.isRatingPhase = isRatingPhase;
+	}
+
+	public void setDillersPoints(int dillersPoints) {
+		this.dillersPoints = dillersPoints;
 	}
 
 	@FXML
@@ -93,8 +99,7 @@ public class GamerController implements Initializable {
 	private void setViewColor() {
 		if (gamer.getState() == State.HITTER) {
 			gamerPane.setStyle(Constants.getColorHitter());
-		}
-		else if (gamer.getState() == State.BUSTED) {
+		} else if (gamer.getState() == State.BUSTED) {
 			gamerPane.setStyle(Constants.getColorBusted());
 		}
 	}
@@ -105,13 +110,48 @@ public class GamerController implements Initializable {
 			betOrResultNumberLabel.setVisible(false);
 			resultLabel.setVisible(false);
 		} else if (isRatingPhase) {
-			betOrResultInfoLabel.setText("Eredmény:");
-			betOrResultNumberLabel.setText("+");
-			resultLabel.setText("Majd meglátjuk");
+			if (gamer instanceof Diller) {
+				betOrResultInfoLabel.setText("Eredmény:");
+				betOrResultNumberLabel.setText("");
+				resultLabel.setText("");
+			} else {
+				betOrResultInfoLabel.setText("Eredmény:");
+				int resultInCoins = getResultInCoin();
+				gamer.setCoinsInBet(resultInCoins);
+				betOrResultNumberLabel.setText((resultInCoins > 0) ? "+" + resultInCoins : resultInCoins + "");
+				String result = getResult(resultInCoins);
+				resultLabel.setText(result);
+			}
 		} else {
 			betOrResultInfoLabel.setText("Tét:");
 			betOrResultNumberLabel.setText(Integer.toString(gamer.getCoinsInBet()));
 			resultLabel.setVisible(false);
+		}
+	}
+
+	private String getResult(int resultInCoins) {
+		if (resultInCoins > 0) {
+			return "Nyeresség";
+		}
+		if (resultInCoins < 0) {
+			return "Vesztesség";
+		}
+		return "Döntetlen";
+	}
+
+	private int getResultInCoin() {
+		if (gamer.getPoints() > Constants.getPointOfBlackjack()) {
+			return -1;
+		} else if (gamer.getState() == State.BLACKJACK) {
+			return 2;
+		} else if (dillersPoints > Constants.getPointOfBlackjack()) {
+			return 1;
+		} else if (gamer.getPoints() < dillersPoints) {
+			return -1;
+		} else if (gamer.getPoints() > dillersPoints) {
+			return 1;
+		} else {
+			return 0;
 		}
 	}
 

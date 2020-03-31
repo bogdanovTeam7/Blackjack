@@ -19,14 +19,11 @@ public class Diller extends Gamer {
 
 	@Override
 	public void makeBet() {
+		
 	}
 
 	@Override
-	public void winBet(int multiplier) {
-	}
-
-	@Override
-	public void lostBet() {
+	public void winBet() {
 	}
 
 }

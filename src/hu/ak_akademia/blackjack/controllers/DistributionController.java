@@ -190,7 +190,7 @@ public class DistributionController implements Initializable {
 		String text = "";
 		if (distributor.getPartipants()
 				.getDiller() != null) {
-			text += "Ostó - " + distributor.getPartipants()
+			text += "Osztó - " + distributor.getPartipants()
 					.getDiller()
 					.getName();
 			text += "\n";
