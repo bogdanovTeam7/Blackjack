@@ -43,7 +43,7 @@
                   </Label>
                   <VBox alignment="BOTTOM_CENTER" layoutX="-3.0" layoutY="50.0" prefHeight="233.0" prefWidth="268.0" spacing="10.0" AnchorPane.bottomAnchor="20.0">
                      <children>
-                        <Button fx:id="startGameButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#changeToNextView" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: gold;" text="Lapkérés inditása" wrapText="true">
+                        <Button fx:id="startGameButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#changeToNextView" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: gold;" text="Lapkérés indítása" wrapText="true">
                            <font>
                               <Font name="Comic Sans MS Bold" size="18.0" />
                            </font>

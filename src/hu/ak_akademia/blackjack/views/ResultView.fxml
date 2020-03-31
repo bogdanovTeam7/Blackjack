@@ -80,6 +80,11 @@
                               <Font name="Comic Sans MS Bold" size="24.0" />
                            </font>
                         </Label>
+                        <Button fx:id="exitGameButton" alignment="CENTER" contentDisplay="CENTER" layoutX="312.0" layoutY="255.0" mnemonicParsing="false" onAction="#exitGame" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: gold;" text="Kilépés" wrapText="true">
+                           <font>
+                              <Font name="Comic Sans MS Bold" size="18.0" />
+                           </font>
+                        </Button>
                      </children>
                   </AnchorPane>
                </left>

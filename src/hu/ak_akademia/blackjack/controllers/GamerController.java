@@ -131,10 +131,10 @@ public class GamerController implements Initializable {
 
 	private String getResult(int resultInCoins) {
 		if (resultInCoins > 0) {
-			return "Nyeresség";
+			return "Nyereség";
 		}
 		if (resultInCoins < 0) {
-			return "Vesztesség";
+			return "Veszteség";
 		}
 		return "Döntetlen";
 	}

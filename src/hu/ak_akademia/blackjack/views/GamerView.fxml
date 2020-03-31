@@ -74,7 +74,7 @@
                   <Font name="Comic Sans MS Bold" size="14.0" />
                </font>
             </Label>
-            <Label fx:id="resultLabel" alignment="CENTER_RIGHT" layoutX="195.0" layoutY="64.0" text="Nyeresség" textFill="WHITE" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="55.0">
+            <Label fx:id="resultLabel" alignment="CENTER_RIGHT" layoutX="195.0" layoutY="64.0" text="Nyereség" textFill="WHITE" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="55.0">
                <font>
                   <Font name="Comic Sans MS Bold" size="14.0" />
                </font>

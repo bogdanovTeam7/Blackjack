@@ -114,6 +114,9 @@ public class HittingController {
 	private HBox allPlayersHBox;
 
 	@FXML
+	private Label bustedInfoLabel;
+
+	@FXML
 	void changeToNextGamerView() {
 		Gamer currentGamer = getCurrentGamer();
 		if (currentGamer.getState() == State.HITTER) {
@@ -201,6 +204,9 @@ public class HittingController {
 		setDillerView();
 		setCurrentGamerPane();
 		setMenuPane(getCurrentGamer());
+		if (getCurrentGamer().getState() == State.BUSTED) {
+			bustedInfoLabel.setVisible(true);
+		}
 
 		Fade fade = new Fade(hittingPane, 700);
 		fade.in();
@@ -230,7 +236,7 @@ public class HittingController {
 			hittingButton.setVisible(true);
 			stayingButton.setVisible(false);
 			bustedNextButton.setVisible(false);
-			changeToResultViewButton.setVisible(true);
+			changeToResultViewButton.setVisible(false);
 		} else if (currentGamer.getPoints() == Constants.getPointOfBlackjack()) {
 			hittingButton.setVisible(false);
 			stayingButton.setVisible(true);

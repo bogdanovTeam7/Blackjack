@@ -109,6 +109,16 @@ public class ResultController {
 	private Label winnerOrLoosersLabel;
 
 	@FXML
+	private Button exitGameButton;
+
+	@FXML
+	void exitGame() {
+		Stage stage = (Stage) exitGameButton.getScene()
+				.getWindow();
+		stage.close();
+	}
+
+	@FXML
 	void changeToInitialDealView() throws IOException {
 
 		countOfGameRound++;
@@ -182,12 +192,13 @@ public class ResultController {
 	}
 
 	private String getWinners() {
-		String text = "Nyertes(ek):";
+		String text = "Nyertes(ek): ";
 		for (Player player : players) {
 			if (player.isWinGrandGame()) {
-				text += " " + player.getName();
+				text += player.getName() + ", ";
 			}
 		}
+		text.substring(0, text.length() - 2);
 		return text;
 	}
 
