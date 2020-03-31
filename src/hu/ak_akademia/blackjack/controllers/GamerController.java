@@ -3,6 +3,7 @@ package hu.ak_akademia.blackjack.controllers;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import hu.ak_akademia.blackjack.constants.Constants;
 import hu.ak_akademia.blackjack.gamer.Gamer;
 import hu.ak_akademia.blackjack.gamer.State;
 import javafx.fxml.FXML;
@@ -91,10 +92,10 @@ public class GamerController implements Initializable {
 
 	private void setViewColor() {
 		if (gamer.getState() == State.HITTER) {
-			gamerPane.setStyle("-fx-background-color: CRIMSON;");
+			gamerPane.setStyle(Constants.getColorHitter());
 		}
-		if (gamer.getState() == State.BUSTED) {
-			gamerPane.setStyle("-fx-background-color: PLUM;");
+		else if (gamer.getState() == State.BUSTED) {
+			gamerPane.setStyle(Constants.getColorBusted());
 		}
 	}
 

@@ -9,8 +9,8 @@ import javafx.util.Duration;
 public class Fade {
 	private FadeTransition fadeT;
 
-	public Fade(Node node) {
-		fadeT = new FadeTransition(Duration.millis(1000), node);
+	public Fade(Node node, int millis) {
+		fadeT = new FadeTransition(Duration.millis(millis), node);
 	}
 
 	public void out(EventHandler<ActionEvent> event) {

@@ -29,9 +29,9 @@
    <left>
       <AnchorPane BorderPane.alignment="CENTER">
          <children>
-            <Label fx:id="cardsInHandLable" layoutX="6.0" layoutY="16.0" text="Kártyak" textFill="GOLD" wrapText="true" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
+            <Label fx:id="cardsInHandLable" layoutX="6.0" layoutY="16.0" maxWidth="70.0" text="Kártyak" textFill="GOLD" wrapText="true" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
                <font>
-                  <Font name="Comic Sans MS Bold" size="18.0" />
+                  <Font name="Comic Sans MS Bold" size="20.0" />
                </font>
             </Label>
             <AnchorPane fx:id="pointsPane" layoutY="109.0">

@@ -6,14 +6,16 @@ import java.util.ArrayList;
 import java.util.ListIterator;
 import java.util.ResourceBundle;
 
+import hu.ak_akademia.blackjack.animations.Fade;
 import hu.ak_akademia.blackjack.card.Card;
 import hu.ak_akademia.blackjack.card.Carddeck;
-import hu.ak_akademia.blackjack.distribution.Participants;
 import hu.ak_akademia.blackjack.gamer.Diller;
 import hu.ak_akademia.blackjack.gamer.Gamer;
 import hu.ak_akademia.blackjack.gamer.Player;
 import hu.ak_akademia.blackjack.gamer.State;
+import hu.ak_akademia.blackjack.statistic.GeneralStatistic;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -26,31 +28,25 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 public class InitialDealController {
-	private Participants partcipants;
 	private Carddeck carddeck;
 	private Diller diller;
 	private ArrayList<Player> players;
 	private int countOfGameRound;
 
-	public InitialDealController(Participants partcipants, int countOfGameRound) {
+	public InitialDealController(ArrayList<Player> players, Diller diller, int countOfGameRound) {
 		this.countOfGameRound = countOfGameRound;
 		carddeck = new Carddeck();
 		carddeck.shuffle();
-		this.partcipants = partcipants;
-		diller = partcipants.getDiller();
-		diller.setState(State.DILLER);
-		players = partcipants.getPlayers();
-		for (Player player : players) {
+		this.diller = diller;
+		this.diller.setState(State.DILLER);
+		this.players = players;
+		for (Player player : this.players) {
 			player.setState(State.PLAYER);
 		}
 	}
 
 	public int getCountOfGameRound() {
 		return countOfGameRound;
-	}
-
-	public Participants getPartcipants() {
-		return partcipants;
 	}
 
 	public Carddeck getCarddeck() {
@@ -72,7 +68,7 @@ public class InitialDealController {
 	private URL location;
 
 	@FXML
-	private BorderPane distributionPane;
+	private BorderPane initialDealPane;
 
 	@FXML
 	private Label roundCounterLable;
@@ -96,16 +92,32 @@ public class InitialDealController {
 	private HBox allPlayersHBox;
 
 	@FXML
-	void changeToNextView(ActionEvent event) throws IOException {
-		HittingController controller = new HittingController(countOfGameRound, carddeck, diller, players);
-		controller.setCurrentHitter(0);
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("../views/HittingView.fxml"));
-		loader.setController(controller);
-		Parent root = loader.load();
-		Scene scene = new Scene(root);
-		Stage stage = (Stage) startGameButton.getScene()
-				.getWindow();
-		stage.setScene(scene);
+	void changeToNextView() {
+		Fade fade = new Fade(initialDealPane, 1000);
+
+		EventHandler<ActionEvent> event = new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent arg0) {
+				HittingController controller = new HittingController(countOfGameRound, carddeck, diller, players);
+				controller.setCurrentHitter(0);
+				GeneralStatistic statistic = new GeneralStatistic();
+				controller.setGeneralStatistic(statistic);
+				FXMLLoader loader = new FXMLLoader(getClass().getResource("../views/HittingView.fxml"));
+				loader.setController(controller);
+				Parent root;
+				try {
+					root = loader.load();
+					Scene scene = new Scene(root);
+					Stage stage = (Stage) initialDealPane.getScene()
+							.getWindow();
+					stage.setScene(scene);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		};
+		fade.out(event);
 	}
 
 	@FXML
@@ -115,6 +127,9 @@ public class InitialDealController {
 		Node dillerView = getNode(diller);
 		dillerPane.setCenter(dillerView);
 		roundCounterLable.setText(countOfGameRound + ". Játszma");
+
+		Fade fade = new Fade(initialDealPane, 1000);
+		fade.in();
 	}
 
 	private void addGamersToHBox() {

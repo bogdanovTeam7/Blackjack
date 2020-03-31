@@ -41,21 +41,21 @@ public class SalutationController implements Initializable {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		Shake shake = new Shake(informationLabel);
-			shake.playAnim();
+		shake.playAnim();
 	}
 
 	@FXML
 	private void goToNextScreen() {
-		Fade fade=new Fade(salutationPane);
-		EventHandler<ActionEvent> event=new EventHandler<ActionEvent>() {
-			
+		Fade fade = new Fade(salutationPane, 1000);
+		EventHandler<ActionEvent> event = new EventHandler<ActionEvent>() {
+
 			@Override
 			public void handle(ActionEvent arg0) {
 				try {
 					setNextScene();
 				} catch (IOException e) {
 					e.printStackTrace();
-				}				
+				}
 			}
 
 		};
@@ -63,10 +63,11 @@ public class SalutationController implements Initializable {
 	}
 
 	private void setNextScene() throws IOException {
-		FXMLLoader loader=new FXMLLoader(getClass().getResource("../views/RulesView.fxml"));
-		Parent root=loader.load();
-		Scene scene=new Scene(root);
-		Stage stage = (Stage)salutationPane.getScene().getWindow();
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("../views/RulesView.fxml"));
+		Parent root = loader.load();
+		Scene scene = new Scene(root);
+		Stage stage = (Stage) salutationPane.getScene()
+				.getWindow();
 		stage.setScene(scene);
 		stage.show();
 

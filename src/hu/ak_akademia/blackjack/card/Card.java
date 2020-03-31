@@ -33,9 +33,9 @@ public class Card {
 	public String toString() {
 		String symbol = "";
 		if (isFaceUp) {
-			symbol = rank.getSymbol() + suit.getSymbol();
+			symbol = rank.getSymbol() + suit.getSymbol() + " ";
 		} else {
-			symbol += Constants.getCardback();
+			symbol += Constants.getCardback() + " ";
 		}
 		return symbol;
 	}

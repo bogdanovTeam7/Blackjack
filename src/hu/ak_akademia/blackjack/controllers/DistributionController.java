@@ -170,7 +170,7 @@ public class DistributionController implements Initializable {
 			gamerChoosingPane.setVisible(false);
 		}
 
-		Fade fade = new Fade(distributionPane);
+		Fade fade = new Fade(distributionPane, 700);
 		fade.in();
 	}
 
@@ -249,7 +249,7 @@ public class DistributionController implements Initializable {
 
 	@FXML
 	private void goToNextScreen() {
-		Fade fade = new Fade(distributionPane);
+		Fade fade = new Fade(distributionPane, 1000);
 		EventHandler<ActionEvent> event = new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent arg0) {
@@ -264,7 +264,11 @@ public class DistributionController implements Initializable {
 	}
 
 	private void setNextScene() throws IOException {
-		InitialDealController controller = new InitialDealController(distributor.getPartipants(), 1);
+		InitialDealController controller = new InitialDealController(distributor.getPartipants()
+				.getPlayers(),
+				distributor.getPartipants()
+						.getDiller(),
+				1);
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("../views/InitialDealView.fxml"));
 		loader.setController(controller);
 		Parent root = loader.load();

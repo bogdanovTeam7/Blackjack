@@ -20,7 +20,8 @@ public final class Constants {
 	private static final double PIC_HEIGHT_WIDTH_RATE = 1.2;
 
 	private static final String FONT = "Comic Sans MS";
-
+	private static final String COLOR_HITTER = "-fx-background-color: CRIMSON;";
+	private static final String COLOR_BUSTED = "-fx-background-color: LIGHTSLATEGREY;";
 
 	public static char getSpade() {
 		return SPADE;
@@ -73,5 +74,15 @@ public final class Constants {
 	public static String getFont() {
 		return FONT;
 	}
+
+	public static String getColorHitter() {
+		return COLOR_HITTER;
+	}
+
+	public static String getColorBusted() {
+		return COLOR_BUSTED;
+	}
+	
+	
 
 }

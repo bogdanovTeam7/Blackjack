@@ -20,7 +20,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class RulesController implements Initializable {
@@ -44,13 +43,13 @@ public class RulesController implements Initializable {
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		String rulesInText = getRules();
 		rulesListView.setText(rulesInText);
-		Fade fade = new Fade(rulePane);
+		Fade fade = new Fade(rulePane, 1000);
 		fade.in();
 	}
 
 	@FXML
 	private void goToNextScreen() {
-		Fade fade = new Fade(rulePane);
+		Fade fade = new Fade(rulePane, 1000);
 		EventHandler<ActionEvent> event = new EventHandler<ActionEvent>() {
 
 			@Override
