@@ -34,16 +34,20 @@
                   <Font name="Comic Sans MS Bold" size="18.0" />
                </font>
             </Label>
-            <Label layoutX="14.0" layoutY="140.0" text="Pontszám:" textFill="WHITE" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="10.0">
-               <font>
-                  <Font name="Comic Sans MS Bold" size="14.0" />
-               </font>
-            </Label>
-            <Label fx:id="pointsLabel" alignment="CENTER_RIGHT" layoutX="86.0" layoutY="138.0" text="21" textAlignment="RIGHT" textFill="GOLD" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="10.0">
-               <font>
-                  <Font name="Comic Sans MS Bold" size="18.0" />
-               </font>
-            </Label>
+            <AnchorPane fx:id="pointsPane" layoutY="109.0">
+               <children>
+                  <Label text="Pontszám:" textFill="WHITE" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="10.0">
+                     <font>
+                        <Font name="Comic Sans MS Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="pointsLabel" alignment="CENTER_RIGHT" layoutX="43.0" layoutY="15.0" text="21" textAlignment="RIGHT" textFill="GOLD" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="10.0">
+                     <font>
+                        <Font name="Comic Sans MS Bold" size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
          </children>
       </AnchorPane>
    </left>

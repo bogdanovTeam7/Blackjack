@@ -71,14 +71,14 @@
          <right>
             <BorderPane fx:id="currentActionPane" prefHeight="330.0" prefWidth="1086.0" BorderPane.alignment="CENTER">
                <right>
-                  <BorderPane fx:id="dillerPane" BorderPane.alignment="CENTER">
+                  <BorderPane fx:id="dillerPane" prefWidth="175.0" BorderPane.alignment="CENTER">
                      <BorderPane.margin>
-                        <Insets bottom="40.0" right="40.0" />
+                        <Insets bottom="20.0" right="20.0" top="20.0" />
                      </BorderPane.margin>
                   </BorderPane>
                </right>
                <center>
-                  <AnchorPane fx:id="currentGamerPane" BorderPane.alignment="CENTER">
+                  <AnchorPane fx:id="currentGamerPane" prefHeight="285.0" prefWidth="810.0" BorderPane.alignment="CENTER">
                      <children>
                         <Label fx:id="gamerNumberNameLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="284.0" layoutY="26.0" text="1. Játékos, Név" textAlignment="CENTER" textFill="WHITE" AnchorPane.topAnchor="20.0">
                            <font>
@@ -103,9 +103,6 @@
       </BorderPane>
    </bottom>
    <center>
-      <HBox fx:id="allPlayersHBox" prefHeight="270.0" prefWidth="1400.0" BorderPane.alignment="CENTER">
-         <BorderPane.margin>
-            <Insets left="5.0" />
-         </BorderPane.margin></HBox>
+      <HBox fx:id="allPlayersHBox" prefHeight="270.0" prefWidth="1400.0" BorderPane.alignment="CENTER" />
    </center>
 </BorderPane>

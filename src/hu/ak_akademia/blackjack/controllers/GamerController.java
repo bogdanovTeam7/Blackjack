@@ -10,14 +10,20 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 
 public class GamerController implements Initializable {
 
 	private Gamer gamer;
+	private boolean isRatingPhase;
 
-	public void setGamer(Gamer gamer) {
+	public GamerController(Gamer gamer) {
 		this.gamer = gamer;
+	}
+
+	public void setRatingPhase(boolean isRatingPhase) {
+		this.isRatingPhase = isRatingPhase;
 	}
 
 	@FXML
@@ -57,6 +63,9 @@ public class GamerController implements Initializable {
 	private Label resultLabel;
 
 	@FXML
+	private AnchorPane pointsPane;
+
+	@FXML
 	void initialize() {
 	}
 
@@ -73,27 +82,35 @@ public class GamerController implements Initializable {
 				.printHun());
 		cardsInHandLable.setText(gamer.cardsInHandtoString());
 		pointsLabel.setText(Integer.toString(gamer.getPoints()));
-		pointsLabel.setVisible((cardsInHandLable.getText()
+		pointsPane.setVisible((cardsInHandLable.getText()
 				.equals("")) ? false : true);
 		coinsNumberLabel.setText(Integer.toString(gamer.getCoinsInHand()));
 		setBetOrResultInformation();
+		setViewColor();
+	}
+
+	private void setViewColor() {
+		if (gamer.getState() == State.HITTER) {
+			gamerPane.setStyle("-fx-background-color: CRIMSON;");
+		}
+		if (gamer.getState() == State.BUSTED) {
+			gamerPane.setStyle("-fx-background-color: PLUM;");
+		}
 	}
 
 	private void setBetOrResultInformation() {
-		if (gamer.getState() == State.PLAYER) {
-			betOrResultInfoLabel.setText("Tét:");
-			betOrResultNumberLabel.setText(Integer.toString(gamer.getCoinsInBet()));
-			resultLabel.setVisible(false);
-		} else if (gamer.getState() == State.APPLICANT) {
+		if (gamer.getState() == State.APPLICANT) {
 			betOrResultInfoLabel.setVisible(false);
 			betOrResultNumberLabel.setVisible(false);
 			resultLabel.setVisible(false);
-
-		} else {
+		} else if (isRatingPhase) {
 			betOrResultInfoLabel.setText("Eredmény:");
 			betOrResultNumberLabel.setText("+");
 			resultLabel.setText("Majd meglátjuk");
-
+		} else {
+			betOrResultInfoLabel.setText("Tét:");
+			betOrResultNumberLabel.setText(Integer.toString(gamer.getCoinsInBet()));
+			resultLabel.setVisible(false);
 		}
 	}
 

@@ -17,10 +17,13 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.stage.Stage;
 
 public class InitialDealController {
 	private Participants partcipants;
@@ -93,8 +96,16 @@ public class InitialDealController {
 	private HBox allPlayersHBox;
 
 	@FXML
-	void changeToNextView(ActionEvent event) {
-		// TODO Auto-generated method stub
+	void changeToNextView(ActionEvent event) throws IOException {
+		HittingController controller = new HittingController(countOfGameRound, carddeck, diller, players);
+		controller.setCurrentHitter(0);
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("../views/HittingView.fxml"));
+		loader.setController(controller);
+		Parent root = loader.load();
+		Scene scene = new Scene(root);
+		Stage stage = (Stage) startGameButton.getScene()
+				.getWindow();
+		stage.setScene(scene);
 	}
 
 	@FXML
@@ -118,8 +129,7 @@ public class InitialDealController {
 	}
 
 	private Node getNode(Gamer gamer) {
-		GamerController gc = new GamerController();
-		gc.setGamer(gamer);
+		GamerController gc = new GamerController(gamer);
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("../views/GamerView.fxml"));
 		loader.setController(gc);
 		Node node = new Node() {

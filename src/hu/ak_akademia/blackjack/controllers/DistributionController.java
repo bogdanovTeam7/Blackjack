@@ -234,8 +234,7 @@ public class DistributionController implements Initializable {
 	}
 
 	private Node getNode(Gamer gamer) {
-		GamerController gc = new GamerController();
-		gc.setGamer(gamer);
+		GamerController gc = new GamerController(gamer);
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("../views/GamerView.fxml"));
 		loader.setController(gc);
 		Node node = new Node() {
