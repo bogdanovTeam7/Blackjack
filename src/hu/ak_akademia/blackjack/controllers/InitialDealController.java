@@ -77,7 +77,7 @@ public class InitialDealController {
 
 	@FXML
 	void changeToNextView() {
-		Fade fade = new Fade(initialDealPane, 1000);
+		Fade fade = new Fade(initialDealPane, 700);
 
 		EventHandler<ActionEvent> event = new EventHandler<ActionEvent>() {
 

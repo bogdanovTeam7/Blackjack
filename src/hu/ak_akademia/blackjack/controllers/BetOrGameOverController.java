@@ -72,8 +72,10 @@ public class BetOrGameOverController {
 
 	@FXML
 	void changeToHittingView() {
-		Fade fade = new Fade(betOrGameOverPane, 1000);
+
+		Fade fade = new Fade(betOrGameOverPane, 700);
 		EventHandler<ActionEvent> event = new EventHandler<ActionEvent>() {
+
 			@Override
 			public void handle(ActionEvent arg0) {
 				try {
@@ -86,8 +88,29 @@ public class BetOrGameOverController {
 		fade.out(event);
 	}
 
+	private boolean isGameWin() {
+		for (Player player : players) {
+			if (player.isWinGrandGame()) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	private String getWinners() {
+		String text = "Nyertes(ek): ";
+		for (Player player : players) {
+			if (player.isWinGrandGame()) {
+				text += player.getName() + ", ";
+			}
+		}
+		text.substring(0, text.length() - 2);
+		return text;
+	}
+
 	private void setNextScene() throws IOException {
-		InitialDealController controller = new InitialDealController(players, diller, 1);
+
+		InitialDealController controller = new InitialDealController(players, diller, countOfGameRound);
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("../views/InitialDealView.fxml"));
 		loader.setController(controller);
 		Parent root = loader.load();
@@ -99,22 +122,39 @@ public class BetOrGameOverController {
 
 	@FXML
 	void exitGame() {
-
+		Stage stage = (Stage) exitGameButton.getScene()
+				.getWindow();
+		stage.close();
 	}
 
 	@FXML
 	void initialize() {
-		makeBets();
-		setStates();
-		addGamersToHBox();
-		Node dillerView = getNode(diller);
-		dillerHBox.getChildren()
-				.add(dillerView);
-		roundCounterLable.setText(Constants.getEnumerationHun(countOfGameRound) + " játszma");
+		if (players.size() < 1) {
+			menuPane.setVisible(false);
+			winnerOrLoosersLabel.setText("Mindenki vesztett. Sajnos...");
+			endGamePane.setVisible(true);
+			betInfoLabel.setText("Várjuk vissza!");
+			roundCounterLable.setText("A játéknak vége!");
+		} else if (isGameWin()) {
+			menuPane.setVisible(false);
+			String winners = getWinners();
+			winnerOrLoosersLabel.setText(winners);
+			endGamePane.setVisible(true);
+			betInfoLabel.setText("Várjuk vissza!");
+			roundCounterLable.setText("A játéknak vége!");
 
-		Fade fade = new Fade(betOrGameOverPane, 1000);
-		fade.in();
+		} else {
+			makeBets();
+			setStates();
+			addGamersToHBox();
+			Node dillerView = getNode(diller);
+			dillerHBox.getChildren()
+					.add(dillerView);
+			roundCounterLable.setText(Constants.getEnumerationHun(countOfGameRound) + " játszma");
 
+			Fade fade = new Fade(betOrGameOverPane, 1000);
+			fade.in();
+		}
 	}
 
 	private void setStates() {

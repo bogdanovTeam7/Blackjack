@@ -149,20 +149,32 @@ public class HittingController {
 		Gamer currentGamer = getCurrentGamer();
 		if (currentGamer instanceof Player) {
 			currentGamer.addCard(carddeck.getCard());
-		} else {
+		} else if (diller.getState() != State.STAYED) {
 			while (currentGamer.getPoints() < Constants.getPointMinForDiller()) {
 				currentGamer.addCard(carddeck.getCard());
 			}
-			generalStatistic.add(currentGamer, carddeck);
 		}
+		generalStatistic.add(currentGamer, carddeck);
 		if (currentGamer.getPoints() > Constants.getPointOfBlackjack()) {
 			currentGamer.setState(State.BUSTED);
+		}
+		if (isAllPlayersBusted()) {
+			diller.setState(State.STAYED);
 		}
 		try {
 			refreshCurrentStage();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+
+	private boolean isAllPlayersBusted() {
+		for (Player player : players) {
+			if (player.getState() != State.BUSTED) {
+				return false;
+			}
+		}
+		return true;
 	}
 
 	private void refreshCurrentStage() throws IOException {
@@ -215,6 +227,11 @@ public class HittingController {
 
 	private void setMenuPane(Gamer currentGamer) {
 		if (currentGamer instanceof Diller && currentGamer.getPoints() >= Constants.getPointMinForDiller()) {
+			hittingButton.setVisible(false);
+			stayingButton.setVisible(false);
+			bustedNextButton.setVisible(false);
+			changeToResultViewButton.setVisible(true);
+		} else if (currentGamer instanceof Diller && currentGamer.getState() == State.STAYED) {
 			hittingButton.setVisible(false);
 			stayingButton.setVisible(false);
 			bustedNextButton.setVisible(false);
@@ -295,7 +312,7 @@ public class HittingController {
 				diller.setState(State.BUSTED);
 			} else if (diller.getPoints() >= Constants.getPointMinForDiller()) {
 				diller.setState(State.STAYED);
-			} else if (diller.getState() == State.HITTER) {
+			} else if (diller.getState() == State.HITTER || diller.getState() == State.STAYED) {
 				diller.setState(State.STAYED);
 			} else {
 				diller.setState(State.HITTER);

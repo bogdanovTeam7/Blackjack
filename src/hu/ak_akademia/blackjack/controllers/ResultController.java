@@ -73,22 +73,10 @@ public class ResultController {
 	}
 
 	@FXML
-	private ResourceBundle resources;
-
-	@FXML
-	private URL location;
-
-	@FXML
 	private BorderPane resultPane;
 
 	@FXML
 	private Label roundCounterLable;
-
-	@FXML
-	private BorderPane guideMainPane;
-
-	@FXML
-	private Label menuInformationLabel;
 
 	@FXML
 	private Button statisticViewButton;
@@ -101,22 +89,6 @@ public class ResultController {
 
 	@FXML
 	private HBox allPlayersHBox;
-
-	@FXML
-	private AnchorPane endGamePane;
-
-	@FXML
-	private Label winnerOrLoosersLabel;
-
-	@FXML
-	private Button exitGameButton;
-
-	@FXML
-	void exitGame() {
-		Stage stage = (Stage) exitGameButton.getScene()
-				.getWindow();
-		stage.close();
-	}
 
 	@FXML
 	void changeToInitialDealView() throws IOException {
@@ -132,44 +104,30 @@ public class ResultController {
 		}
 		players.removeAll(playersToRemove);
 
-		if (players.size() < 1) {
-			initialDealViewButton.setVisible(false);
-			statisticViewButton.setVisible(false);
-			winnerOrLoosersLabel.setText("Mindenki vesztett. Sajnos...");
-			endGamePane.setVisible(true);
-		} else if (isGameWin()) {
-			initialDealViewButton.setVisible(false);
-			statisticViewButton.setVisible(false);
-			String winners = getWinners();
-			winnerOrLoosersLabel.setText(winners);
-			endGamePane.setVisible(true);
+		Fade fade = new Fade(resultPane, 1000);
+		EventHandler<ActionEvent> event = new EventHandler<ActionEvent>() {
 
-		} else {
-			Fade fade = new Fade(resultPane, 1000);
-			EventHandler<ActionEvent> event = new EventHandler<ActionEvent>() {
-
-				@Override
-				public void handle(ActionEvent arg0) {
-					try {
-						setNextScene();
-					} catch (IOException e) {
-						e.printStackTrace();
-					}
+			@Override
+			public void handle(ActionEvent arg0) {
+				try {
+					setNextScene();
+				} catch (IOException e) {
+					e.printStackTrace();
 				}
-			};
-			fade.out(event);
-		}
-	}
+			}
 
-	private void setNextScene() throws IOException {
-		InitialDealController controller = new InitialDealController(players, diller, countOfGameRound);
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("../views/InitialDealView.fxml"));
-		loader.setController(controller);
-		Parent root = loader.load();
-		Scene scene = new Scene(root);
-		Stage stage = (Stage) resultPane.getScene()
-				.getWindow();
-		stage.setScene(scene);
+			private void setNextScene() throws IOException {
+				BetOrGameOverController controller = new BetOrGameOverController(countOfGameRound, diller, players);
+				FXMLLoader loader = new FXMLLoader(getClass().getResource("../views/BetOrGameOverView.fxml"));
+				loader.setController(controller);
+				Parent root = loader.load();
+				Scene scene = new Scene(root);
+				Stage stage = (Stage) resultPane.getScene()
+						.getWindow();
+				stage.setScene(scene);
+			}
+		};
+		fade.out(event);
 	}
 
 	@FXML
@@ -196,26 +154,6 @@ public class ResultController {
 
 		Fade fade = new Fade(resultPane, 1000);
 		fade.in();
-	}
-
-	private String getWinners() {
-		String text = "Nyertes(ek): ";
-		for (Player player : players) {
-			if (player.isWinGrandGame()) {
-				text += player.getName() + ", ";
-			}
-		}
-		text.substring(0, text.length() - 2);
-		return text;
-	}
-
-	private boolean isGameWin() {
-		for (Player player : players) {
-			if (player.isWinGrandGame()) {
-				return true;
-			}
-		}
-		return false;
 	}
 
 	private void setDillerView() throws IOException {

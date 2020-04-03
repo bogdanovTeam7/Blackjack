@@ -32,11 +32,11 @@
 		</AnchorPane>
 	</top>
 	<bottom>
-		<BorderPane fx:id="guideMainPane" prefHeight="330.0" prefWidth="1400.0" BorderPane.alignment="CENTER">
+		<BorderPane prefHeight="330.0" prefWidth="1400.0" BorderPane.alignment="CENTER">
 			<left>
 				<AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
 					<children>
-						<Label fx:id="menuInformationLabel" alignment="CENTER" layoutX="8.0" layoutY="5.0" prefHeight="18.0" prefWidth="251.0" text="Kérem, válasszon:" textFill="WHITE" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="20.0">
+						<Label alignment="CENTER" layoutX="8.0" layoutY="5.0" prefHeight="18.0" prefWidth="251.0" text="Kérem, válasszon:" textFill="WHITE" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="20.0">
 							<font>
 								<Font name="Comic Sans MS Bold" size="18.0" />
 							</font>
@@ -67,27 +67,6 @@
 							</BorderPane.margin>
 						</HBox>
 					</right>
-               <left>
-                  <AnchorPane fx:id="endGamePane" prefHeight="330.0" prefWidth="824.0" visible="false" BorderPane.alignment="CENTER">
-                     <children>
-                        <Label fx:id="winnerOrLoosersLabel" alignment="CENTER" layoutX="325.0" layoutY="202.0" text="Játszma eredménye" textAlignment="CENTER" textFill="WHITE">
-                           <font>
-                              <Font name="Comic Sans MS Bold" size="18.0" />
-                           </font>
-                        </Label>
-                        <Label alignment="CENTER" layoutX="314.0" layoutY="94.0" text="A játéknak vége!" textAlignment="CENTER" textFill="WHITE">
-                           <font>
-                              <Font name="Comic Sans MS Bold" size="24.0" />
-                           </font>
-                        </Label>
-                        <Button fx:id="exitGameButton" alignment="CENTER" contentDisplay="CENTER" layoutX="312.0" layoutY="255.0" mnemonicParsing="false" onAction="#exitGame" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: gold;" text="Kilépés" wrapText="true">
-                           <font>
-                              <Font name="Comic Sans MS Bold" size="18.0" />
-                           </font>
-                        </Button>
-                     </children>
-                  </AnchorPane>
-               </left>
 				</BorderPane>
          </center>
 		</BorderPane>

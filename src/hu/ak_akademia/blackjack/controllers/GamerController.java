@@ -97,7 +97,7 @@ public class GamerController {
 			resultLabel.setVisible(false);
 		} else if (isRatingPhase) {
 			if (gamer instanceof Diller) {
-				betOrResultInfoLabel.setText("Eredmény:");
+				betOrResultInfoLabel.setText("");
 				betOrResultNumberLabel.setText("");
 				resultLabel.setText("");
 			} else {
