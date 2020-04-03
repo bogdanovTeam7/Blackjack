@@ -1,9 +1,6 @@
 package hu.ak_akademia.blackjack.controllers;
 
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
-
 import hu.ak_akademia.blackjack.animations.Fade;
 import hu.ak_akademia.blackjack.animations.Shake;
 import javafx.event.ActionEvent;
@@ -16,15 +13,8 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import javafx.fxml.Initializable;
 
-public class SalutationController implements Initializable {
-
-	@FXML
-	private ResourceBundle resources;
-
-	@FXML
-	private URL location;
+public class SalutationController {
 
 	@FXML
 	private BorderPane salutationPane;
@@ -38,8 +28,8 @@ public class SalutationController implements Initializable {
 	@FXML
 	private ImageView imageView;
 
-	@Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
+	@FXML
+	void initialize() {
 		Shake shake = new Shake(informationLabel);
 		shake.playAnim();
 	}
@@ -58,19 +48,18 @@ public class SalutationController implements Initializable {
 				}
 			}
 
+			private void setNextScene() throws IOException {
+				FXMLLoader loader = new FXMLLoader(getClass().getResource("../views/RulesView.fxml"));
+				Parent root = loader.load();
+				Scene scene = new Scene(root);
+				Stage stage = (Stage) salutationPane.getScene()
+						.getWindow();
+				stage.setScene(scene);
+				stage.show();
+
+			}
+
 		};
 		fade.out(event);
 	}
-
-	private void setNextScene() throws IOException {
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("../views/RulesView.fxml"));
-		Parent root = loader.load();
-		Scene scene = new Scene(root);
-		Stage stage = (Stage) salutationPane.getScene()
-				.getWindow();
-		stage.setScene(scene);
-		stage.show();
-
-	}
-
 }

@@ -1,21 +1,17 @@
 package hu.ak_akademia.blackjack.controllers;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-
 import hu.ak_akademia.blackjack.constants.Constants;
 import hu.ak_akademia.blackjack.gamer.Diller;
 import hu.ak_akademia.blackjack.gamer.Gamer;
 import hu.ak_akademia.blackjack.gamer.State;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 
-public class GamerController implements Initializable {
+public class GamerController {
 
 	private Gamer gamer;
 	private boolean isRatingPhase;
@@ -32,12 +28,6 @@ public class GamerController implements Initializable {
 	public void setDillersPoints(int dillersPoints) {
 		this.dillersPoints = dillersPoints;
 	}
-
-	@FXML
-	private ResourceBundle resources;
-
-	@FXML
-	private URL location;
 
 	@FXML
 	private BorderPane gamerPane;
@@ -74,10 +64,6 @@ public class GamerController implements Initializable {
 
 	@FXML
 	void initialize() {
-	}
-
-	@Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
 		setGamerPane();
 	}
 

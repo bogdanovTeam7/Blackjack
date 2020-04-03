@@ -1,11 +1,8 @@
 package hu.ak_akademia.blackjack.controllers;
 
 import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.ListIterator;
-import java.util.ResourceBundle;
-
 import hu.ak_akademia.blackjack.animations.Fade;
 import hu.ak_akademia.blackjack.animations.Shake;
 import hu.ak_akademia.blackjack.constants.Constants;
@@ -20,7 +17,6 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -33,37 +29,18 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
-public class DistributionController implements Initializable {
+public class DistributionController {
 	private Distributor distributor;
 
 	public DistributionController(Distributor distributor) {
 		this.distributor = distributor;
 	}
 
-	public void setDistributor(Distributor distributor) {
-		this.distributor = distributor;
-	}
-
-	@FXML
-	private ResourceBundle resources;
-
-	@FXML
-	private URL location;
-
 	@FXML
 	private BorderPane distributionPane;
 
 	@FXML
-	private BorderPane guideMainPane;
-
-	@FXML
-	private Label menuInformationLabel;
-
-	@FXML
 	private Button selectedNameOkButton;
-
-	@FXML
-	private BorderPane currentActionPane;
 
 	@FXML
 	private Label questionLabel;
@@ -96,7 +73,7 @@ public class DistributionController implements Initializable {
 				selectedGamer.setState(State.PARTICIPATOR);
 				refreshCurrentScene();
 			} else if (getNumberOfApplicants() < 1) {
-				currentActionPane.setVisible(false);
+				gamerChoosingPane.setVisible(false);
 				refreshCurrentScene();
 			} else {
 				distributor.getPartipants()
@@ -141,8 +118,8 @@ public class DistributionController implements Initializable {
 		return number;
 	}
 
-	@Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
+	@FXML
+	void initialize() {
 
 		if (distributor.getPartipants()
 				.getDiller() != null
@@ -264,12 +241,11 @@ public class DistributionController implements Initializable {
 	}
 
 	private void setNextScene() throws IOException {
-		InitialDealController controller = new InitialDealController(distributor.getPartipants()
-				.getPlayers(),
+		BetOrGameOverController controller = new BetOrGameOverController(1, distributor.getPartipants()
+				.getDiller(),
 				distributor.getPartipants()
-						.getDiller(),
-				1);
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("../views/InitialDealView.fxml"));
+						.getPlayers());
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("../views/BetOrGameOverView.fxml"));
 		loader.setController(controller);
 		Parent root = loader.load();
 		Scene scene = new Scene(root);

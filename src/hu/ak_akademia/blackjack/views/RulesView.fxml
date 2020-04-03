@@ -28,7 +28,7 @@
 	<bottom>
 		<AnchorPane prefHeight="82.0" prefWidth="1500.0" BorderPane.alignment="CENTER">
 			<children>
-				<Button fx:id="startGameButton" alignment="CENTER" contentDisplay="CENTER" layoutX="47.0" layoutY="28.0" mnemonicParsing="false" onAction="#goToNextScreen" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: gold;" text="Játék indítása" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="40.0">
+				<Button fx:id="startGameButton" alignment="CENTER" contentDisplay="CENTER" layoutX="47.0" layoutY="28.0" mnemonicParsing="false" onAction="#goToNextScreen" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: gold;" text="Tovább" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="40.0">
 					<font>
 						<Font name="Comic Sans MS Bold" size="18.0" />
 					</font>

@@ -1,10 +1,8 @@
 package hu.ak_akademia.blackjack.controllers;
 
 import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.ListIterator;
-import java.util.ResourceBundle;
 
 import hu.ak_akademia.blackjack.animations.Fade;
 import hu.ak_akademia.blackjack.card.Card;
@@ -63,28 +61,13 @@ public class InitialDealController {
 	}
 
 	@FXML
-	private ResourceBundle resources;
-
-	@FXML
-	private URL location;
-
-	@FXML
 	private BorderPane initialDealPane;
 
 	@FXML
 	private Label roundCounterLable;
 
 	@FXML
-	private BorderPane guideMainPane;
-
-	@FXML
-	private Label menuInformationLabel;
-
-	@FXML
 	private Button startGameButton;
-
-	@FXML
-	private BorderPane currentActionPane;
 
 	@FXML
 	private BorderPane dillerPane;

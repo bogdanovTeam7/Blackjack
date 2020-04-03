@@ -32,11 +32,11 @@
       </AnchorPane>
    </top>
    <bottom>
-      <BorderPane fx:id="guideMainPane" prefHeight="330.0" prefWidth="1400.0" BorderPane.alignment="CENTER">
+      <BorderPane prefHeight="330.0" prefWidth="1400.0" BorderPane.alignment="CENTER">
          <left>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <children>
-                  <Label fx:id="menuInformationLabel" alignment="CENTER" layoutX="8.0" layoutY="5.0" prefHeight="18.0" prefWidth="251.0" text="Kérem, válasszon:" textFill="WHITE" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="20.0">
+                  <Label alignment="CENTER" layoutX="8.0" layoutY="5.0" prefHeight="18.0" prefWidth="251.0" text="Kérem, válasszon:" textFill="WHITE" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="20.0">
                      <font>
                         <Font name="Comic Sans MS Bold" size="18.0" />
                      </font>
@@ -54,7 +54,7 @@
             </AnchorPane>
          </left>
          <right>
-            <BorderPane fx:id="currentActionPane" prefHeight="330.0" prefWidth="1086.0" BorderPane.alignment="CENTER">
+            <BorderPane prefHeight="330.0" prefWidth="1086.0" BorderPane.alignment="CENTER">
                <right>
                   <BorderPane fx:id="dillerPane" prefHeight="100.0" prefWidth="175.0" BorderPane.alignment="CENTER">
                      <BorderPane.margin>

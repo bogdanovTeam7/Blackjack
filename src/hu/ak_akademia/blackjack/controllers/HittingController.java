@@ -1,7 +1,6 @@
 package hu.ak_akademia.blackjack.controllers;
 
 import java.util.ArrayList;
-
 import hu.ak_akademia.blackjack.animations.Fade;
 import hu.ak_akademia.blackjack.card.Card;
 import hu.ak_akademia.blackjack.card.Carddeck;
@@ -11,11 +10,7 @@ import hu.ak_akademia.blackjack.gamer.Gamer;
 import hu.ak_akademia.blackjack.gamer.Player;
 import hu.ak_akademia.blackjack.gamer.State;
 import hu.ak_akademia.blackjack.statistic.GeneralStatistic;
-
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
-
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -36,7 +31,7 @@ public class HittingController {
 	private Diller diller;
 	private ArrayList<Player> players;
 	private int currentHitter;
-	private boolean isBetDone;
+	private boolean isBlackjackChecked;
 	private GeneralStatistic generalStatistic;
 
 	public HittingController(int countOfGameRound, Carddeck carddeck, Diller diller, ArrayList<Player> players) {
@@ -59,14 +54,8 @@ public class HittingController {
 	}
 
 	public void setBetDone(boolean isBetDone) {
-		this.isBetDone = isBetDone;
+		this.isBlackjackChecked = isBetDone;
 	}
-
-	@FXML
-	private ResourceBundle resources;
-
-	@FXML
-	private URL location;
 
 	@FXML
 	private BorderPane hittingPane;
@@ -193,10 +182,9 @@ public class HittingController {
 	@FXML
 	void initialize() throws IOException {
 
-		if (!isBetDone) {
-			setBets();
+		if (!isBlackjackChecked) {
 			checkForBlackjack();
-			isBetDone = true;
+			isBlackjackChecked = true;
 		}
 		roundCounterLable.setText(Constants.getEnumerationHun(countOfGameRound) + " játszma");
 		setHitter();
@@ -322,9 +310,4 @@ public class HittingController {
 		}
 	}
 
-	private void setBets() {
-		for (Player player : players) {
-			player.makeBet();
-		}
-	}
 }
