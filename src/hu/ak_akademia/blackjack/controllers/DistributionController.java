@@ -159,7 +159,7 @@ public class DistributionController implements Initializable {
 				.getPlayers()
 				.size() + 1;
 		questionLabel.setText((distributor.getPartipants()
-				.getDiller() == null) ? "Ki lesz az osztó?" : "Ki lesz a " + currentPlayer + " játékos?");
+				.getDiller() == null) ? "Ki lesz az osztó?" : "Ki lesz " + Constants.getEnumerationWithArticleHun(currentPlayer) + " játékos?");
 
 		addGamersToComboBox();
 		namesComboBox.setStyle("-fx-font-family:\"" + Constants.getFont() + "\"; -fx-font-size:24");

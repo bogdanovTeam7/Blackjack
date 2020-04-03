@@ -1,9 +1,9 @@
 package hu.ak_akademia.blackjack.controllers;
 
 import java.util.ArrayList;
-import java.util.ListIterator;
 
 import hu.ak_akademia.blackjack.animations.Fade;
+import hu.ak_akademia.blackjack.constants.Constants;
 import hu.ak_akademia.blackjack.gamer.Diller;
 import hu.ak_akademia.blackjack.gamer.Gamer;
 import hu.ak_akademia.blackjack.gamer.Player;
@@ -137,6 +137,13 @@ public class ResultController {
 			statisticViewButton.setVisible(false);
 			winnerOrLoosersLabel.setText("Mindenki vesztett. Sajnos...");
 			endGamePane.setVisible(true);
+		} else if (isGameWin()) {
+			initialDealViewButton.setVisible(false);
+			statisticViewButton.setVisible(false);
+			String winners = getWinners();
+			winnerOrLoosersLabel.setText(winners);
+			endGamePane.setVisible(true);
+
 		} else {
 			Fade fade = new Fade(resultPane, 1000);
 			EventHandler<ActionEvent> event = new EventHandler<ActionEvent>() {
@@ -166,25 +173,25 @@ public class ResultController {
 	}
 
 	@FXML
-	void changeToStatisticView() {
-
+	void changeToStatisticView() throws IOException {
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("../views/StatisticView.fxml"));
+		StatisticViewController controller = new StatisticViewController();
+		loader.setController(controller);
+		Parent root = loader.load();
+		Scene scene = new Scene(root);
+		Stage stage = new Stage();
+		stage.setScene(scene);
+		stage.show();
 	}
 
 	@FXML
 	void initialize() throws IOException {
 
-		roundCounterLable.setText(countOfGameRound + ". Játszma");
+		roundCounterLable.setText(Constants.getEnumerationHun(countOfGameRound) + " játszma");
 		setPlayersViews();
 		setDillerView();
 		for (Player player : players) {
 			player.winBet();
-		}
-		if (isGameWin()) {
-			initialDealViewButton.setVisible(false);
-			statisticViewButton.setVisible(false);
-			String winners = getWinners();
-			winnerOrLoosersLabel.setText(winners);
-			endGamePane.setVisible(true);
 		}
 
 		Fade fade = new Fade(resultPane, 1000);

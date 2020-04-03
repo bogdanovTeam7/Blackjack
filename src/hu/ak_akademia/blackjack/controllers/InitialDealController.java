@@ -9,6 +9,7 @@ import java.util.ResourceBundle;
 import hu.ak_akademia.blackjack.animations.Fade;
 import hu.ak_akademia.blackjack.card.Card;
 import hu.ak_akademia.blackjack.card.Carddeck;
+import hu.ak_akademia.blackjack.constants.Constants;
 import hu.ak_akademia.blackjack.gamer.Diller;
 import hu.ak_akademia.blackjack.gamer.Gamer;
 import hu.ak_akademia.blackjack.gamer.Player;
@@ -126,7 +127,7 @@ public class InitialDealController {
 		addGamersToHBox();
 		Node dillerView = getNode(diller);
 		dillerPane.setCenter(dillerView);
-		roundCounterLable.setText(countOfGameRound + ". Játszma");
+		roundCounterLable.setText(Constants.getEnumerationHun(countOfGameRound) + " játszma");
 
 		Fade fade = new Fade(initialDealPane, 1000);
 		fade.in();

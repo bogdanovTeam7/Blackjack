@@ -65,17 +65,17 @@
                <left>
                   <AnchorPane fx:id="gamerChoosingPane" prefHeight="330.0" prefWidth="529.0" BorderPane.alignment="CENTER">
                      <children>
-      						<Label fx:id="questionLabel" alignment="CENTER" layoutX="139.0" layoutY="25.0" prefHeight="18.0" prefWidth="251.0" text="Label" textFill="GOLD">
+      						<Label fx:id="questionLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="50.0" layoutY="28.0" text="Label" textAlignment="CENTER" textFill="GOLD" wrapText="true" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="20.0">
       							<font>
       								<Font name="Comic Sans MS Bold" size="18.0" />
       							</font>
       						</Label>
-      						<Button fx:id="selectedNameOkButton" alignment="CENTER" contentDisplay="CENTER" layoutX="165.0" layoutY="258.0" mnemonicParsing="false" onAction="#setParticipant" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: gold;" text="OK">
+      						<Button fx:id="selectedNameOkButton" alignment="CENTER" contentDisplay="CENTER" layoutX="265.0" layoutY="257.0" mnemonicParsing="false" onAction="#setParticipant" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: gold;" text="OK" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="80.0">
       							<font>
       								<Font name="Comic Sans MS Bold" size="18.0" />
       							</font>
       						</Button>
-      						<ComboBox fx:id="namesComboBox" layoutX="65.0" layoutY="114.0" prefHeight="50.0" prefWidth="400.0" promptText="..........." />
+      						<ComboBox fx:id="namesComboBox" layoutX="65.0" layoutY="114.0" prefHeight="50.0" prefWidth="400.0" promptText="..........." AnchorPane.leftAnchor="50.0" />
                      </children>
                   </AnchorPane>
                </left>

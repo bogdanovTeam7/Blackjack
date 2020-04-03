@@ -198,7 +198,7 @@ public class HittingController {
 			checkForBlackjack();
 			isBetDone = true;
 		}
-		roundCounterLable.setText(countOfGameRound + ". Játszma");
+		roundCounterLable.setText(Constants.getEnumerationHun(countOfGameRound) + " játszma");
 		setHitter();
 		setPlayersViews();
 		setDillerView();

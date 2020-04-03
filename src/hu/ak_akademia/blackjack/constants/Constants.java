@@ -82,7 +82,42 @@ public final class Constants {
 	public static String getColorBusted() {
 		return COLOR_BUSTED;
 	}
-	
-	
+
+	public static String getEnumerationHun(int number) {
+		switch (number) {
+		case 1:
+			return "Első";
+		case 2:
+			return "Második";
+		case 3:
+			return "Harmadik";
+		case 4:
+			return "Negyedik";
+		case 5:
+			return "Ötödik";
+		case 6:
+			return "Hatodik";
+		case 7:
+			return "Hetedik";
+		case 8:
+			return "Nyolcadik";
+		case 9:
+			return "Kilencedik";
+		case 10:
+			return "Tizedik";
+		default:
+			return number + "-dik";
+		}
+	}
+
+	public static String getEnumerationWithArticleHun(int number) {
+		String enumeration = getEnumerationHun(number).toLowerCase();
+		if (enumeration.matches("^[aAáÁeÉiÍoÓöÖőŐúÚüÜűŰ].+")) {
+			enumeration = "az " + enumeration;
+		} else {
+			enumeration = "a " + enumeration;
+		}
+		return enumeration;
+	}
 
 }
