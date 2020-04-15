@@ -4,9 +4,9 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.control.Tab;
+import javafx.scene.layout.GridPane;
 
-public class StatisticTabGamerController {
+public class StatisticPaneGeneralController {
 
 	@FXML
 	private ResourceBundle resources;
@@ -15,10 +15,13 @@ public class StatisticTabGamerController {
 	private URL location;
 
 	@FXML
-	private Tab tabGamer;
+	private Label roundCounterLable;
 
 	@FXML
-	private Label gamerNameLabel;
+	private GridPane gameRoundInfoGridPane;
+
+	@FXML
+	private GridPane gamersInfoGridPane;
 
 	@FXML
 	void initialize() {

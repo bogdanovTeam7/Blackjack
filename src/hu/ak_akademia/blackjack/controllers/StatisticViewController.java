@@ -2,9 +2,17 @@ package hu.ak_akademia.blackjack.controllers;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.ListIterator;
 import java.util.ResourceBundle;
+
+import hu.ak_akademia.blackjack.gamer.Diller;
+import hu.ak_akademia.blackjack.gamer.Gamer;
+import hu.ak_akademia.blackjack.gamer.Player;
+import hu.ak_akademia.blackjack.statistic.GeneralStatistic;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
@@ -12,6 +20,17 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 public class StatisticViewController {
+	private ArrayList<Player> players;
+	private Diller diller;
+	private int countOfGameRound;
+	private GeneralStatistic generalStatistic;
+
+	public StatisticViewController(ArrayList<Player> players, Diller diller, int countOfGameRound, GeneralStatistic generalStatistic) {
+		this.players = players;
+		this.diller = diller;
+		this.countOfGameRound = countOfGameRound;
+		this.generalStatistic = generalStatistic;
+	}
 
 	@FXML
 	private ResourceBundle resources;
@@ -37,31 +56,57 @@ public class StatisticViewController {
 
 	@FXML
 	void initialize() throws IOException {
-		Tab generalTab = getGeneralTab("../views/StatisticTabGeneralView.fxml");
+		tabsPane.getTabs()
+				.clear();
+		Tab generalTab = getGeneralTab("../views/StatisticPaneGeneralView.fxml");
 		tabsPane.getTabs()
 				.addAll(generalTab);
-		Tab gamerTab = getGamerTab("../views/StatisticTabGamerView.fxml");
+
+		for (ListIterator<Player> iterator = players.listIterator(); iterator.hasNext();) {
+			int counter = iterator.nextIndex();
+			Gamer gamer = iterator.next();
+			Tab gamerTab = getGamerPane(gamer, counter, "../views/StatisticPaneGamerView.fxml");
+			tabsPane.getTabs()
+					.addAll(gamerTab);
+		}
+
+		Tab dillerTab = new Tab("Osztó");
+		Node dillerPane = getGamerPane(diller, "../views/StatisticPaneGamerView.fxml");
+		dillerTab.setContent(dillerPane);
 		tabsPane.getTabs()
-				.addAll(gamerTab);
-		
-		Tab newTab=new Tab("HURRA");
-		tabsPane.getTabs().add(newTab);
-	}
-
-	private Tab getGamerTab(String path) throws IOException {
-		FXMLLoader loader = new FXMLLoader(getClass().getResource(path));
-		StatisticTabGamerController controller = new StatisticTabGamerController();
-		loader.setController(controller);
-		Tab node = (Tab) loader.load();
-		return node;
-
+				.add(dillerTab);
 	}
 
 	private Tab getGeneralTab(String path) throws IOException {
-		FXMLLoader loader = new FXMLLoader(getClass().getResource(path));
-		StatisticTabGeneralController controller = new StatisticTabGeneralController();
-		loader.setController(controller);
-		Tab node = (Tab) loader.load();
-		return node;
+		Tab tab = new Tab("Általános");
+		Node pane = getGeneralPane(path);
+		tab.setContent(pane);
+		return tab;
 	}
+
+	private Tab getGamerPane(Gamer gamer, int counter, String path) throws IOException {
+		Tab tab = new Tab((counter + 1) + ". Játékos");
+		Node pane = getGamerPane(gamer, path);
+		tab.setContent(pane);
+		return tab;
+
+	}
+
+	private Node getGamerPane(Gamer gamer, String path) throws IOException {
+		FXMLLoader loader = new FXMLLoader(getClass().getResource(path));
+		StatisticPaneGamerController controller = new StatisticPaneGamerController();
+		loader.setController(controller);
+		Node pane = loader.load();
+		return pane;
+
+	}
+
+	private Node getGeneralPane(String path) throws IOException {
+		FXMLLoader loader = new FXMLLoader(getClass().getResource(path));
+		StatisticPaneGeneralController controller = new StatisticPaneGeneralController();
+		loader.setController(controller);
+		Node pane = loader.load();
+		return pane;
+	}
+
 }

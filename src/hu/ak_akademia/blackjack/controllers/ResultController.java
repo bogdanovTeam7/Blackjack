@@ -133,7 +133,7 @@ public class ResultController {
 	@FXML
 	void changeToStatisticView() throws IOException {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("../views/StatisticView.fxml"));
-		StatisticViewController controller = new StatisticViewController();
+		StatisticViewController controller = new StatisticViewController(players, diller, countOfGameRound, generalStatistic);
 		loader.setController(controller);
 		Parent root = loader.load();
 		Scene scene = new Scene(root);
