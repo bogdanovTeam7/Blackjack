@@ -1,5 +1,6 @@
 package hu.ak_akademia.blackjack.controllers;
 
+import hu.ak_akademia.blackjack.coin.Coin;
 import hu.ak_akademia.blackjack.constants.Constants;
 import hu.ak_akademia.blackjack.gamer.Diller;
 import hu.ak_akademia.blackjack.gamer.Gamer;
@@ -63,6 +64,9 @@ public class GamerController {
 	private AnchorPane pointsPane;
 
 	@FXML
+	private ImageView coinPicImageView;
+
+	@FXML
 	void initialize() {
 		setGamerPane();
 	}
@@ -77,9 +81,22 @@ public class GamerController {
 		pointsLabel.setText(Integer.toString(gamer.getPoints()));
 		pointsPane.setVisible((cardsInHandLable.getText()
 				.equals("")) ? false : true);
-		coinsNumberLabel.setText(Integer.toString(gamer.getCoinsInHand()));
+		setCoinNumber();
+		setCoinPic(gamer.getCoinsInHand());
 		setBetOrResultInformation();
 		setViewColor();
+	}
+
+	private void setCoinNumber() {
+		if (gamer instanceof Diller) {
+			coinsNumberLabel.setText("∞");
+		} else {
+			coinsNumberLabel.setText(Integer.toString(gamer.getCoinsInHand()));
+		}
+	}
+
+	private void setCoinPic(int coinsInHand) {
+		coinPicImageView.setImage(new Image(new Coin().getPicPath(coinsInHand)));
 	}
 
 	private void setViewColor() {
