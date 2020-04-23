@@ -67,6 +67,9 @@ public class GamerController {
 	private ImageView coinPicImageView;
 
 	@FXML
+	private ImageView betPicImageView;
+
+	@FXML
 	void initialize() {
 		setGamerPane();
 	}
@@ -125,9 +128,15 @@ public class GamerController {
 				String result = getResult(resultInCoins);
 				resultLabel.setText(result);
 			}
+		} else if (gamer instanceof Diller) {
+			betOrResultInfoLabel.setText("");
+			betOrResultNumberLabel.setText("");
+			resultLabel.setText("");
 		} else {
+
 			betOrResultInfoLabel.setText("Tét:");
 			betOrResultNumberLabel.setText(Integer.toString(gamer.getCoinsInBet()));
+			betPicImageView.setVisible(true);
 			resultLabel.setVisible(false);
 		}
 	}
