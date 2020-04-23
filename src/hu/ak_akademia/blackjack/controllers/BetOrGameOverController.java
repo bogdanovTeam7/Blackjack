@@ -98,7 +98,7 @@ public class BetOrGameOverController {
 	}
 
 	private String getWinners() {
-		String text = "Nyertes(ek): ";
+		String text = "Gratulálunk!\nNyertes(ek): ";
 		for (Player player : players) {
 			if (player.isWinGrandGame()) {
 				text += player.getName() + ", ";
