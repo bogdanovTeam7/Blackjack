@@ -11,6 +11,8 @@ import hu.ak_akademia.blackjack.gamer.Player;
 import hu.ak_akademia.blackjack.gamer.State;
 import hu.ak_akademia.blackjack.statistic.GeneralStatistic;
 import java.io.IOException;
+import java.time.LocalDateTime;
+
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -34,18 +36,11 @@ public class HittingController {
 	private boolean isBlackjackChecked;
 	private GeneralStatistic generalStatistic;
 
-	public HittingController(int countOfGameRound, Carddeck carddeck, Diller diller, ArrayList<Player> players) {
+	public HittingController(int countOfGameRound, Carddeck carddeck, Diller diller, ArrayList<Player> players, GeneralStatistic generalStatistic) {
 		this.countOfGameRound = countOfGameRound;
 		this.carddeck = carddeck;
 		this.diller = diller;
 		this.players = players;
-	}
-
-	public GeneralStatistic getGeneralStatistic() {
-		return generalStatistic;
-	}
-
-	public void setGeneralStatistic(GeneralStatistic generalStatistic) {
 		this.generalStatistic = generalStatistic;
 	}
 
@@ -111,7 +106,6 @@ public class HittingController {
 		if (currentGamer.getState() == State.HITTER) {
 			currentGamer.setState(State.STAYED);
 		}
-		generalStatistic.add(currentGamer, carddeck);
 		currentHitter++;
 		try {
 			refreshCurrentStage();
@@ -155,6 +149,8 @@ public class HittingController {
 			}
 		}
 		generalStatistic.add(currentGamer, carddeck);
+		LocalDateTime endDate = LocalDateTime.now();
+		generalStatistic.setEndDate(endDate);
 		if (currentGamer.getPoints() > Constants.getPointOfBlackjack()) {
 			currentGamer.setState(State.BUSTED);
 		}
@@ -178,10 +174,9 @@ public class HittingController {
 	}
 
 	private void refreshCurrentStage() throws IOException {
-		HittingController controller = new HittingController(countOfGameRound, carddeck, diller, players);
+		HittingController controller = new HittingController(countOfGameRound, carddeck, diller, players, generalStatistic);
 		controller.setCurrentHitter(currentHitter);
 		controller.setBetDone(true);
-		controller.setGeneralStatistic(generalStatistic);
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("../views/HittingView.fxml"));
 		loader.setController(controller);
 		Parent root = loader.load();

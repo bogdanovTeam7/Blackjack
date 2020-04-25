@@ -16,7 +16,7 @@ public class Main extends Application {
 		Parent root = loader.load();
 		Scene scene = new Scene(root);
 		primaryStage.setScene(scene);
-		primaryStage.setTitle("A&K Game Zona");
+		primaryStage.setTitle("A&K Game Zone");
 		primaryStage.show();
 	}
 

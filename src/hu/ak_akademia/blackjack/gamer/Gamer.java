@@ -1,6 +1,7 @@
 package hu.ak_akademia.blackjack.gamer;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.ListIterator;
 
 import hu.ak_akademia.blackjack.card.Card;
@@ -13,7 +14,7 @@ public class Gamer {
 	protected int coinsInHand;
 	protected int coinsInBet;
 	protected State state;
-	protected ArrayList<Card> cardsInHand;
+	protected List<Card> cardsInHand;
 	protected boolean isLostGrandGame;
 	protected boolean isWinGrandGame;
 	protected String picFileName;
@@ -131,8 +132,12 @@ public class Gamer {
 		this.coinsInBet = coinsInBet;
 	}
 
-	public ArrayList<Card> getCardsInHand() {
+	public List<Card> getCardsInHand() {
 		return cardsInHand;
+	}
+
+	public void setCardsInHand(List<Card> cardsInHand) {
+		this.cardsInHand = cardsInHand;
 	}
 
 	public String cardsInHandtoString() {

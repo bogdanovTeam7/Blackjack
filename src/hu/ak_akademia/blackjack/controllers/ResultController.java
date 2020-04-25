@@ -139,6 +139,7 @@ public class ResultController {
 		Scene scene = new Scene(root);
 		Stage stage = new Stage();
 		stage.setScene(scene);
+		stage.setTitle("A&K Game Zone");
 		stage.show();
 	}
 

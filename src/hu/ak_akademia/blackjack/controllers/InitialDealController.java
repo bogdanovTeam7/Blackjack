@@ -1,6 +1,7 @@
 package hu.ak_akademia.blackjack.controllers;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.ListIterator;
 
@@ -31,6 +32,7 @@ public class InitialDealController {
 	private Diller diller;
 	private ArrayList<Player> players;
 	private int countOfGameRound;
+	private GeneralStatistic generalStatistic;
 
 	public InitialDealController(ArrayList<Player> players, Diller diller, int countOfGameRound) {
 		this.countOfGameRound = countOfGameRound;
@@ -42,6 +44,8 @@ public class InitialDealController {
 		for (Player player : this.players) {
 			player.setState(State.PLAYER);
 		}
+		generalStatistic = new GeneralStatistic();
+		generalStatistic.setStartDate(LocalDateTime.now());
 	}
 
 	public int getCountOfGameRound() {
@@ -83,10 +87,8 @@ public class InitialDealController {
 
 			@Override
 			public void handle(ActionEvent arg0) {
-				HittingController controller = new HittingController(countOfGameRound, carddeck, diller, players);
+				HittingController controller = new HittingController(countOfGameRound, carddeck, diller, players, generalStatistic);
 				controller.setCurrentHitter(0);
-				GeneralStatistic statistic = new GeneralStatistic();
-				controller.setGeneralStatistic(statistic);
 				FXMLLoader loader = new FXMLLoader(getClass().getResource("../views/HittingView.fxml"));
 				loader.setController(controller);
 				Parent root;
@@ -106,6 +108,7 @@ public class InitialDealController {
 
 	@FXML
 	void initialize() {
+
 		initialDeal();
 		addGamersToHBox();
 		Node dillerView = getNode(diller);

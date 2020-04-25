@@ -111,7 +111,7 @@ public class GamerController {
 	}
 
 	private void setBetOrResultInformation() {
-		if (gamer.getState() == State.APPLICANT) {
+		if (gamer.getState() == State.APPLICANT || gamer.getState() == State.PARTICIPATOR) {
 			betOrResultInfoLabel.setVisible(false);
 			betOrResultNumberLabel.setVisible(false);
 			resultLabel.setVisible(false);
@@ -133,7 +133,6 @@ public class GamerController {
 			betOrResultNumberLabel.setText("");
 			resultLabel.setText("");
 		} else {
-
 			betOrResultInfoLabel.setText("Tét:");
 			betOrResultNumberLabel.setText(Integer.toString(gamer.getCoinsInBet()));
 			betPicImageView.setVisible(true);

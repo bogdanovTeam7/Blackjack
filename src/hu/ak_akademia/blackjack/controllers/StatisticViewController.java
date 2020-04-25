@@ -103,7 +103,7 @@ public class StatisticViewController {
 
 	private Node getGeneralPane(String path) throws IOException {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource(path));
-		StatisticPaneGeneralController controller = new StatisticPaneGeneralController();
+		StatisticPaneGeneralController controller = new StatisticPaneGeneralController(players,diller, countOfGameRound,generalStatistic);
 		loader.setController(controller);
 		Node pane = loader.load();
 		return pane;
