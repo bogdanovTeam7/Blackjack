@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 
 <BorderPane fx:id="statisticMainPane" prefHeight="650.0"
-	prefWidth="1000.0" style="-fx-background-color: darkgreen;"
+	prefWidth="1200.0" style="-fx-background-color: darkgreen;"
 	xmlns="http://javafx.com/javafx/11.0.1"
 	xmlns:fx="http://javafx.com/fxml/1">
 	<top>

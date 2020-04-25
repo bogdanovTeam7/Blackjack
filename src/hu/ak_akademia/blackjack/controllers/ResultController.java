@@ -8,11 +8,7 @@ import hu.ak_akademia.blackjack.gamer.Diller;
 import hu.ak_akademia.blackjack.gamer.Gamer;
 import hu.ak_akademia.blackjack.gamer.Player;
 import hu.ak_akademia.blackjack.statistic.GeneralStatistic;
-
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
-
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -22,7 +18,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;

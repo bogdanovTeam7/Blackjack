@@ -44,6 +44,8 @@ public class GeneralStatistic {
 		this.endDate = endDate;
 	}
 
-
+	public Carddeck getCarddeck(Gamer gamer) {
+		return statistic.get(gamer);
+	}
 
 }

@@ -106,6 +106,7 @@ public class HittingController {
 		if (currentGamer.getState() == State.HITTER) {
 			currentGamer.setState(State.STAYED);
 		}
+		generalStatistic.add(currentGamer, carddeck);
 		currentHitter++;
 		try {
 			refreshCurrentStage();
@@ -121,6 +122,7 @@ public class HittingController {
 
 			@Override
 			public void handle(ActionEvent arg0) {
+				generalStatistic.add(diller, carddeck);
 				ResultController controller = new ResultController(players, diller, countOfGameRound, generalStatistic);
 				FXMLLoader loader = new FXMLLoader(getClass().getResource("../views/ResultView.fxml"));
 				loader.setController(controller);

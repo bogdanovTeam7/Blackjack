@@ -10,6 +10,7 @@ import hu.ak_akademia.blackjack.gamer.Diller;
 import hu.ak_akademia.blackjack.gamer.Gamer;
 import hu.ak_akademia.blackjack.gamer.Player;
 import hu.ak_akademia.blackjack.statistic.GeneralStatistic;
+import hu.ak_akademia.blackjack.statistic.RetrospectiveGamerStatistic;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -85,7 +86,8 @@ public class StatisticViewController {
 	}
 
 	private Tab getGamerPane(Gamer gamer, int counter, String path) throws IOException {
-		Tab tab = new Tab((counter + 1) + ". Játékos");
+		String title = (gamer instanceof Diller) ? "Osztó" : (counter + 1) + ". Játékos";
+		Tab tab = new Tab(title);
 		Node pane = getGamerPane(gamer, path);
 		tab.setContent(pane);
 		return tab;
@@ -94,7 +96,8 @@ public class StatisticViewController {
 
 	private Node getGamerPane(Gamer gamer, String path) throws IOException {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource(path));
-		StatisticPaneGamerController controller = new StatisticPaneGamerController();
+		RetrospectiveGamerStatistic gamerStatistic = new RetrospectiveGamerStatistic(gamer.getCardsInHand(), generalStatistic.getCarddeck(gamer));
+		StatisticPaneGamerController controller = new StatisticPaneGamerController(gamer, gamerStatistic);
 		loader.setController(controller);
 		Node pane = loader.load();
 		return pane;
@@ -103,7 +106,7 @@ public class StatisticViewController {
 
 	private Node getGeneralPane(String path) throws IOException {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource(path));
-		StatisticPaneGeneralController controller = new StatisticPaneGeneralController(players,diller, countOfGameRound,generalStatistic);
+		StatisticPaneGeneralController controller = new StatisticPaneGeneralController(players, diller, countOfGameRound, generalStatistic);
 		loader.setController(controller);
 		Node pane = loader.load();
 		return pane;

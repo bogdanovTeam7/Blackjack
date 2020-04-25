@@ -8,6 +8,10 @@ import java.util.Queue;
 public class Carddeck {
 	private Queue<Card> carddeck;
 
+	public Carddeck(Queue<Card> carddeck) {
+		this.carddeck = carddeck;
+	}
+
 	public Carddeck() {
 		carddeck = new LinkedList<Card>();
 
@@ -34,6 +38,10 @@ public class Carddeck {
 
 	public Card getCard() {
 		return carddeck.poll();
+	}
+
+	public void addCard(Card card) {
+		carddeck.offer(card);
 	}
 
 }

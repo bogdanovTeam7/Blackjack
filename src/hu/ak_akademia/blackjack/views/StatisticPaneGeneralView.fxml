@@ -11,15 +11,15 @@
    <children>
       <Label fx:id="roundCounterLable" layoutX="55.0" layoutY="42.0" text="Játszma száma" textFill="DARKGREEN" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="20.0">
          <font>
-            <Font name="Comic Sans MS Bold" size="18.0" />
+            <Font name="Comic Sans MS Bold" size="20.0" />
          </font>
       </Label>
       <AnchorPane layoutY="72.0" prefHeight="128.0" prefWidth="600.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="60.0">
          <children>
             <GridPane fx:id="gameRoundInfoGridPane" alignment="CENTER" prefHeight="106.0" prefWidth="540.0" AnchorPane.bottomAnchor="22.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
               <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="220.8" minWidth="10.0" prefWidth="220.8" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="326.40000000000003" minWidth="0.0" prefWidth="311.2" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="257.6000640869141" minWidth="10.0" prefWidth="256.8000152587891" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="326.40000000000003" minWidth="0.0" prefWidth="283.1999847412109" />
               </columnConstraints>
               <rowConstraints>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -32,22 +32,22 @@
                <children>
                   <Label alignment="CENTER" contentDisplay="CENTER" text="Játszma információ:" textAlignment="CENTER" textFill="DARKGREEN">
                      <font>
-                        <Font name="Comic Sans MS Bold" size="14.0" />
+                        <Font name="Comic Sans MS Bold" size="16.0" />
                      </font>
                   </Label>
                   <Label alignment="CENTER" contentDisplay="CENTER" text="Játszma vége:" textAlignment="CENTER" textFill="DARKGREEN" GridPane.rowIndex="3">
                      <font>
-                        <Font name="Comic Sans MS Bold" size="14.0" />
+                        <Font name="Comic Sans MS Bold" size="16.0" />
                      </font>
                   </Label>
                   <Label alignment="CENTER" contentDisplay="CENTER" text="Játszma kezdete:" textAlignment="CENTER" textFill="DARKGREEN" GridPane.rowIndex="2">
                      <font>
-                        <Font name="Comic Sans MS Bold" size="14.0" />
+                        <Font name="Comic Sans MS Bold" size="16.0" />
                      </font>
                   </Label>
                   <Label alignment="CENTER" contentDisplay="CENTER" text="Osztásra került lapok száma:" textAlignment="CENTER" textFill="DARKGREEN" GridPane.rowIndex="4">
                      <font>
-                        <Font name="Comic Sans MS Bold" size="14.0" />
+                        <Font name="Comic Sans MS Bold" size="16.0" />
                      </font>
                   </Label>
                </children>
@@ -77,7 +77,7 @@
                <children>
                   <Label alignment="CENTER" contentDisplay="CENTER" text="Játékosok:" textAlignment="CENTER" textFill="DARKGREEN">
                      <font>
-                        <Font name="Comic Sans MS Bold" size="14.0" />
+                        <Font name="Comic Sans MS Bold" size="16.0" />
                      </font>
                   </Label>
                </children>
