@@ -23,6 +23,10 @@ public final class Constants {
 	private static final String COLOR_HITTER = "-fx-background-color: CRIMSON;";
 	private static final String COLOR_BUSTED = "-fx-background-color: LIGHTSLATEGREY;";
 
+	private static final String URL = "jdbc:oracle:thin:@//localhost:1521/xepdb1";
+	private static final String USER = "my_blackjack";
+	private static final String PASSWORD = "admin";
+
 	public static char getSpade() {
 		return SPADE;
 	}
@@ -81,6 +85,18 @@ public final class Constants {
 
 	public static String getColorBusted() {
 		return COLOR_BUSTED;
+	}
+
+	public static String getUrl() {
+		return URL;
+	}
+
+	public static String getUser() {
+		return USER;
+	}
+
+	public static String getPassword() {
+		return PASSWORD;
 	}
 
 	public static String getEnumerationHun(int number) {

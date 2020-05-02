@@ -18,6 +18,7 @@ public class Gamer {
 	protected boolean isLostGrandGame;
 	protected boolean isWinGrandGame;
 	protected String picFileName;
+	protected int id;
 
 	public Gamer() {
 	}
@@ -138,6 +139,14 @@ public class Gamer {
 
 	public void setCardsInHand(List<Card> cardsInHand) {
 		this.cardsInHand = cardsInHand;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String cardsInHandtoString() {
