@@ -4,8 +4,8 @@ import hu.ak_akademia.blackjack.constants.Constants;
 
 public class Diller extends Gamer {
 
-	public Diller(String name, String picURL) {
-		super(name, picURL);
+	public Diller(String name, String picURL, int id) {
+		super(name, picURL, id);
 		coinsInHand = Constants.getStartCoinsForDiller();
 		state = State.PARTICIPATOR;
 	}
@@ -14,12 +14,12 @@ public class Diller extends Gamer {
 	}
 
 	public Diller(Gamer gamer) {
-		this(gamer.getName(), gamer.getPicFileName());
+		this(gamer.getName(), gamer.getPicFileName(), gamer.getId());
 	}
 
 	@Override
 	public void makeBet() {
-		
+
 	}
 
 	@Override

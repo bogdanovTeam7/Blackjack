@@ -1,10 +1,13 @@
 package hu.ak_akademia.blackjack.controllers;
 
+import java.sql.SQLException;
+
 import hu.ak_akademia.blackjack.coin.Coin;
 import hu.ak_akademia.blackjack.constants.Constants;
 import hu.ak_akademia.blackjack.gamer.Diller;
 import hu.ak_akademia.blackjack.gamer.Gamer;
 import hu.ak_akademia.blackjack.gamer.State;
+import hu.ak_akademia.blackjack.sql.SQLHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -123,6 +126,11 @@ public class GamerController {
 			} else {
 				betOrResultInfoLabel.setText("Eredmény:");
 				int resultInCoins = getResultInCoin();
+				try {
+					insertSQLResult(resultInCoins);
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
 				gamer.setCoinsInBet(resultInCoins);
 				betOrResultNumberLabel.setText((resultInCoins > 0) ? "+" + resultInCoins : resultInCoins + "");
 				String result = getResult(resultInCoins);
@@ -137,6 +145,18 @@ public class GamerController {
 			betOrResultNumberLabel.setText(Integer.toString(gamer.getCoinsInBet()));
 			betPicImageView.setVisible(true);
 			resultLabel.setVisible(false);
+		}
+	}
+
+	private void insertSQLResult(int resultInCoins) throws SQLException {
+		SQLHandler sqlHandler = new SQLHandler();
+		System.out.println(gamer.getId()+"");
+		if (resultInCoins < 0) {
+			sqlHandler.increaseLostGames(gamer.getId());
+		} else if (resultInCoins > 0) {
+			sqlHandler.increaseWinGames(gamer.getId());
+		} else {
+			sqlHandler.increaseDrawGames(gamer.getId());
 		}
 	}
 

@@ -11,7 +11,7 @@ public class Distributor {
 	private Participants partipants = new Participants();
 
 	public Distributor() {
-		gamers=new GamersDataBase();
+		gamers = new GamersDataBase();
 	}
 
 	public Distributor(GamersDataBase gamers) {
@@ -39,7 +39,7 @@ public class Distributor {
 				.get(index);
 
 		if (gamer.getState() == State.APPLICANT && partipants.getDiller() == null) {
-			Diller diller = new Diller(gamer.getName(), gamer.getPicFileName());
+			Diller diller = new Diller(gamer);
 			partipants.setDiller(diller);
 			gamer.setState(State.DILLER);
 		}
@@ -50,7 +50,7 @@ public class Distributor {
 				.get(index);
 
 		if (gamer.getState() == State.APPLICANT) {
-			Player player = new Player(gamer.getName(), gamer.getPicFileName());
+			Player player = new Player(gamer);
 			partipants.getPlayers()
 					.add(player);
 			gamer.setState(State.PLAYER);

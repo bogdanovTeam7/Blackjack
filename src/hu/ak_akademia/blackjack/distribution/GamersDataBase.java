@@ -33,8 +33,7 @@ public class GamersDataBase {
 						int id = resultSet.getInt("gamer_id");
 						String name = resultSet.getString("name");
 						String picFileName = resultSet.getString("pic_file_name");
-						Gamer gamer = new Gamer(name, picFileName);
-						gamer.setId(id);
+						Gamer gamer = new Gamer(name, picFileName, id);
 						gamers.add(gamer);
 					}
 				}

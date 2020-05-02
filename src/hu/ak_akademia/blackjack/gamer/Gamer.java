@@ -23,12 +23,13 @@ public class Gamer {
 	public Gamer() {
 	}
 
-	public Gamer(String name, String picURL) {
+	public Gamer(String name, String picURL, int id) {
 		this.name = name;
 		coinsInHand = Constants.getStartCoinsForPlayer();
 		state = State.APPLICANT;
 		cardsInHand = new ArrayList<>();
 		picFileName = picURL;
+		this.id = id;
 	}
 
 	public void makeBet() {
