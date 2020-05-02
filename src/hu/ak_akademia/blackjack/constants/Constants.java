@@ -24,7 +24,7 @@ public final class Constants {
 	private static final String COLOR_BUSTED = "-fx-background-color: LIGHTSLATEGREY;";
 
 	private static final String URL = "jdbc:oracle:thin:@//localhost:1521/xepdb1";
-	private static final String USER = "my_blackjack";
+	private static final String USER = "blackjack";
 	private static final String PASSWORD = "admin";
 
 	public static char getSpade() {
