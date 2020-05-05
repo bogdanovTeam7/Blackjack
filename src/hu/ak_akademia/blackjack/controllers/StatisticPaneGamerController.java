@@ -60,13 +60,13 @@ public class StatisticPaneGamerController {
 			gameRoundInfoGridPane.add(currentPoints, i, 2);
 
 			double percent = statisticCalculator.blackjackOdds();
-			String percentInString = new DecimalFormat("#.##").format(percent);
+			String percentInString = new DecimalFormat("#.#").format(percent);
 			Text blackjackOdds = new Text(percentInString + " %");
 			blackjackOdds.setFont(Font.font(Constants.getFont(), FontWeight.BOLD, 16));
 			gameRoundInfoGridPane.add(blackjackOdds, i, 3);
 
 			percent = statisticCalculator.pushingOdds();
-			percentInString = new DecimalFormat("#.##").format(percent);
+			percentInString = new DecimalFormat("#.#").format(percent);
 			Text pushingOdds = new Text(percentInString + " %");
 			pushingOdds.setFont(Font.font(Constants.getFont(), FontWeight.BOLD, 16));
 			gameRoundInfoGridPane.add(pushingOdds, i, 4);
@@ -77,6 +77,9 @@ public class StatisticPaneGamerController {
 	private String setCardsInHand(List<Card> cardsInHand) {
 		String cards = "";
 		for (ListIterator<Card> iterator = cardsInHand.listIterator(); iterator.hasNext();) {
+			if (iterator.nextIndex() != 0 && iterator.nextIndex() % 3 == 0) {
+				cards += "\n";
+			}
 			cards += iterator.next()
 					.toString();
 		}

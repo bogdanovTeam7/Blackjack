@@ -9,18 +9,22 @@ import java.util.ArrayList;
 
 import hu.ak_akademia.blackjack.constants.Constants;
 import hu.ak_akademia.blackjack.gamer.Gamer;
+import hu.ak_akademia.blackjack.modalwindows.LoadingWindow;
 
 public class GamersDataBase {
 
 	private ArrayList<Gamer> gamers;
 
 	public GamersDataBase() {
-//		getGamersDates();
+
+		LoadingWindow loadingWindow = new LoadingWindow();
+		loadingWindow.show("BETŐLTÉS....KIS TÜRELEM...");
 		try {
 			getGamersDatesFromSQL();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		loadingWindow.close();
 	}
 
 	private void getGamersDatesFromSQL() throws SQLException {
@@ -40,18 +44,6 @@ public class GamersDataBase {
 			}
 		}
 	}
-
-//	private void getGamersDates() {
-//		gamers = new ArrayList<>();
-//		gamers.add(new Gamer("András", "file:res/András.png"));
-//		gamers.add(new Gamer("Katalin", "file:res/Katalin.png"));
-//		gamers.add(new Gamer("Dóra", "file:res/Dora.png"));
-//		gamers.add(new Gamer("István", "file:res/István.png"));
-//		gamers.add(new Gamer("Gergő", "file:res/Gergő.png"));
-//		gamers.add(new Gamer("Botond", "file:res/Botond.png"));
-//		gamers.add(new Gamer("Bence", "file:res/Bence.png"));
-//		gamers.add(new Gamer("Vladimir", "file:res/Vladimir.png"));
-//	}
 
 	public ArrayList<Gamer> getGamers() {
 		return gamers;

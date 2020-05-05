@@ -2,6 +2,7 @@ package hu.ak_akademia.blackjack.controllers;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.ListIterator;
 
@@ -46,6 +47,7 @@ public class InitialDealController {
 		}
 		generalStatistic = new GeneralStatistic();
 		generalStatistic.setStartDate(LocalDateTime.now());
+		generalStatistic.setEndDate(LocalDateTime.now());
 	}
 
 	public int getCountOfGameRound() {

@@ -4,12 +4,15 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.ListIterator;
 import java.util.ResourceBundle;
 
+import hu.ak_akademia.blackjack.card.Card;
 import hu.ak_akademia.blackjack.gamer.Diller;
 import hu.ak_akademia.blackjack.gamer.Gamer;
 import hu.ak_akademia.blackjack.gamer.Player;
+import hu.ak_akademia.blackjack.modalwindows.LoadingWindow;
 import hu.ak_akademia.blackjack.statistic.GeneralStatistic;
 import hu.ak_akademia.blackjack.statistic.RetrospectiveGamerStatistic;
 import javafx.fxml.FXML;
@@ -51,13 +54,7 @@ public class StatisticViewController {
 
 	@FXML
 	void exitWindow() {
-		
-		System.out.println("StatisticViewController exitWindow");
-		System.out.println(players);
-		System.out.println(players.get(0).getCardsInHand());
-		System.out.println(diller);
-		System.out.println(diller.getCardsInHand());
-		
+
 		Stage stage = (Stage) statisticMainPane.getScene()
 				.getWindow();
 		stage.close();
@@ -65,32 +62,21 @@ public class StatisticViewController {
 
 	@FXML
 	void initialize() throws IOException {
+		LoadingWindow loadingWindow = new LoadingWindow();
+		loadingWindow.show("SZÁMÍTÁS FOLYAMATBAN VAN...KIS TÜRELEM");
+
 		tabsPane.getTabs()
 				.clear();
 		Tab generalTab = getGeneralTab("../views/StatisticPaneGeneralView.fxml");
 		tabsPane.getTabs()
 				.addAll(generalTab);
-		
-		
+
 		for (ListIterator<Player> iterator = players.listIterator(); iterator.hasNext();) {
-			
-			System.out.println("ListIterator<Player> iterator kezdet");
-			System.out.println(players);
-			System.out.println(players.get(0).getCardsInHand());
-			System.out.println(diller);
-			System.out.println(diller.getCardsInHand());
-			
 			int counter = iterator.nextIndex();
 			Gamer gamer = iterator.next();
 			Tab gamerTab = getGamerPane(gamer, counter, "../views/StatisticPaneGamerView.fxml");
 			tabsPane.getTabs()
 					.addAll(gamerTab);
-			
-			System.out.println("ListIterator<Player> iterator vége");
-			System.out.println(players);
-			System.out.println(players.get(0).getCardsInHand());
-			System.out.println(diller);
-			System.out.println(diller.getCardsInHand());
 		}
 
 		Tab dillerTab = new Tab("Osztó");
@@ -104,12 +90,8 @@ public class StatisticViewController {
 		winDrawLostTab.setContent(winDrawLost);
 		tabsPane.getTabs()
 				.add(winDrawLostTab);
-		
-		System.out.println("Tab winDrawLostTab = new Tab(Összesített)");
-		System.out.println(players);
-		System.out.println(players.get(0).getCardsInHand());
-		System.out.println(diller);
-		System.out.println(diller.getCardsInHand());
+
+		loadingWindow.close();
 	}
 
 	private Node getWinDrawLostPane(String path) throws IOException {
@@ -143,7 +125,8 @@ public class StatisticViewController {
 
 	private Node getGamerPane(Gamer gamer, String path) throws IOException {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource(path));
-		RetrospectiveGamerStatistic gamerStatistic = new RetrospectiveGamerStatistic(gamer.getCardsInHand(), generalStatistic.getCarddeck(gamer));
+		List<Card> cardsInHand = new ArrayList<>(gamer.getCardsInHand());
+		RetrospectiveGamerStatistic gamerStatistic = new RetrospectiveGamerStatistic(cardsInHand, generalStatistic.getCarddeck(gamer));
 		StatisticPaneGamerController controller = new StatisticPaneGamerController(gamer, gamerStatistic);
 		loader.setController(controller);
 		Node pane = loader.load();

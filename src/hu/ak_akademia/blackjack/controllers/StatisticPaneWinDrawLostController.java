@@ -1,7 +1,6 @@
 package hu.ak_akademia.blackjack.controllers;
 
 import javafx.fxml.FXML;
-import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -34,8 +33,6 @@ public class StatisticPaneWinDrawLostController {
 	void initialize() throws SQLException {
 		int column = 1;
 
-//		setGridPaneColumnsSize();
-
 		for (Number number : gamersIDs) {
 			int row = 0;
 			int primaryKey = number.intValue();
@@ -50,13 +47,6 @@ public class StatisticPaneWinDrawLostController {
 			column++;
 		}
 	}
-
-//	private void setGridPaneColumnsSize() {
-//		for (int i = 0; i < gamersIDs.size(); i++) {
-//			winDrawLostGridPane.getColumnConstraints()
-//					.add(new ColumnConstraints(50.0));
-//		}
-//	}
 
 	private void setWinDrawLostGamesPercent(int primaryKey, int column, int row, String field) throws SQLException {
 		Text text = new Text(format.format(sqlHandler.getPercent(primaryKey, field)));
