@@ -129,6 +129,12 @@ public class ResultController {
 	void changeToStatisticView() throws IOException {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("../views/StatisticView.fxml"));
 		StatisticViewController controller = new StatisticViewController(players, diller, countOfGameRound, generalStatistic);
+
+		System.out.println(players);
+		System.out.println(players.get(0).getCardsInHand());
+		System.out.println(diller);
+		System.out.println(diller.getCardsInHand());
+
 		loader.setController(controller);
 		Parent root = loader.load();
 		Scene scene = new Scene(root);
@@ -179,4 +185,5 @@ public class ResultController {
 		Node node = loader.load();
 		return node;
 	}
+
 }

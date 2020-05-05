@@ -150,7 +150,6 @@ public class GamerController {
 
 	private void insertSQLResult(int resultInCoins) throws SQLException {
 		SQLHandler sqlHandler = new SQLHandler();
-		System.out.println(gamer.getId()+"");
 		if (resultInCoins < 0) {
 			sqlHandler.increaseLostGames(gamer.getId());
 		} else if (resultInCoins > 0) {

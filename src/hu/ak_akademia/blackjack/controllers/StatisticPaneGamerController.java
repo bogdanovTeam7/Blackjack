@@ -42,7 +42,7 @@ public class StatisticPaneGamerController {
 			Carddeck carddeck = gamerStatistic.getCarddeck(i);
 
 			if (i > 1) {
-				String title = Constants.getEnumerationHun(i - 1) + " lapkérés";
+				String title = Constants.getEnumerationHun(i - 1) + "\nlapkérés";
 				Text hittingNumber = new Text(title);
 				hittingNumber.setFont(Font.font(Constants.getFont(), FontWeight.BOLD, 16));
 				hittingNumber.setFill(Color.DARKGREEN);

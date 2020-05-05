@@ -2,6 +2,7 @@ package hu.ak_akademia.blackjack.controllers;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ListIterator;
 import java.util.ResourceBundle;
@@ -50,6 +51,13 @@ public class StatisticViewController {
 
 	@FXML
 	void exitWindow() {
+		
+		System.out.println("StatisticViewController exitWindow");
+		System.out.println(players);
+		System.out.println(players.get(0).getCardsInHand());
+		System.out.println(diller);
+		System.out.println(diller.getCardsInHand());
+		
 		Stage stage = (Stage) statisticMainPane.getScene()
 				.getWindow();
 		stage.close();
@@ -62,13 +70,27 @@ public class StatisticViewController {
 		Tab generalTab = getGeneralTab("../views/StatisticPaneGeneralView.fxml");
 		tabsPane.getTabs()
 				.addAll(generalTab);
-
+		
+		
 		for (ListIterator<Player> iterator = players.listIterator(); iterator.hasNext();) {
+			
+			System.out.println("ListIterator<Player> iterator kezdet");
+			System.out.println(players);
+			System.out.println(players.get(0).getCardsInHand());
+			System.out.println(diller);
+			System.out.println(diller.getCardsInHand());
+			
 			int counter = iterator.nextIndex();
 			Gamer gamer = iterator.next();
 			Tab gamerTab = getGamerPane(gamer, counter, "../views/StatisticPaneGamerView.fxml");
 			tabsPane.getTabs()
 					.addAll(gamerTab);
+			
+			System.out.println("ListIterator<Player> iterator vége");
+			System.out.println(players);
+			System.out.println(players.get(0).getCardsInHand());
+			System.out.println(diller);
+			System.out.println(diller.getCardsInHand());
 		}
 
 		Tab dillerTab = new Tab("Osztó");
@@ -76,6 +98,31 @@ public class StatisticViewController {
 		dillerTab.setContent(dillerPane);
 		tabsPane.getTabs()
 				.add(dillerTab);
+
+		Tab winDrawLostTab = new Tab("Összesített");
+		Node winDrawLost = getWinDrawLostPane("../views/StatisticPaneWinDrawLostView.fxml");
+		winDrawLostTab.setContent(winDrawLost);
+		tabsPane.getTabs()
+				.add(winDrawLostTab);
+		
+		System.out.println("Tab winDrawLostTab = new Tab(Összesített)");
+		System.out.println(players);
+		System.out.println(players.get(0).getCardsInHand());
+		System.out.println(diller);
+		System.out.println(diller.getCardsInHand());
+	}
+
+	private Node getWinDrawLostPane(String path) throws IOException {
+		FXMLLoader loader = new FXMLLoader(getClass().getResource(path));
+		StatisticPaneWinDrawLostController controller;
+		try {
+			controller = new StatisticPaneWinDrawLostController();
+			loader.setController(controller);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		Node node = loader.load();
+		return node;
 	}
 
 	private Tab getGeneralTab(String path) throws IOException {

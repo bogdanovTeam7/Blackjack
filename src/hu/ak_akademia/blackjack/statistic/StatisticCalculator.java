@@ -19,25 +19,20 @@ public class StatisticCalculator {
 		this.cardsInHand = cardsInHand;
 		this.carddeck = carddeck;
 		points = calculatePoints();
-		pointsByMinValueOfAces = calculatePointsWithAces();
+		pointsByMinValueOfAces = getPointsByMinValueOfAces();
 	}
 
-	private int calculatePointsWithAces() {
-		int countOfAcesInHand = calculateAcesInHand();
-		if (countOfAcesInHand < 1) {
-			return points;
-		}
-		return points - (countOfAcesInHand * 10);
-	}
-
-	private int calculateAcesInHand() {
-		int count = 0;
+	private int getPointsByMinValueOfAces() {
+		int minPoints = 0;
 		for (Card card : cardsInHand) {
 			if (card.getRank() == Rank.ACE) {
-				count++;
+				minPoints++;
+			} else {
+				minPoints += card.getRank()
+						.getValue();
 			}
 		}
-		return count;
+		return minPoints;
 	}
 
 	public int getPoints() {
