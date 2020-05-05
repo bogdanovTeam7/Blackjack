@@ -127,7 +127,7 @@ public class SQLHandler {
 	public double getPercent(int primaryKey, String field) throws SQLException {
 		double percent = 0.0;
 		try (Connection connection = DriverManager.getConnection(url, user, password)) {
-			String sql = "SELECT 100*" + field + "/(win_games+draw_games+lost_games) percent FROM gamer WHERE gamer_id = ?";
+			String sql = "SELECT CASE WHEN win_games+draw_games+lost_games = 0 THEN 0 ELSE 100*" + field + "/(win_games+draw_games+lost_games) END percent FROM gamer WHERE gamer_id = ?";
 			try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
 				preparedStatement.setInt(1, primaryKey);
 				try (ResultSet resultSet = preparedStatement.executeQuery()) {
